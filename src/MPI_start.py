@@ -46,6 +46,8 @@ class MainNode:
             self.context.last_heartbeat = time.time()
         self.start_leader_if_self()
 
+
+
     def start_leader_if_self(self):
         if self.context.rank != self.context.leader_rank:
             return
@@ -60,6 +62,8 @@ class MainNode:
         self.comm_thread.start()
         self.worker_thread = threading.Thread(target=self.worker_work.run, daemon=True)
         self.worker_thread.start()
+
+
 
     def run(self):
         self.start_threads()

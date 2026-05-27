@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.metrics import precision_score, recall_score, f1_score
 
+#Codigo usado na mateira de Machine Learning, só refatorado para ficar mais fácil de chamar na classe do worker
 
 def inicializar_weights_he(inp, out):
     return np.random.randn(out, inp) * np.sqrt(2.0 / inp)
