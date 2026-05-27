@@ -1,8 +1,9 @@
 import time
+from logger import print_to_node as print
 import numpy as np
 from node_context import NodeContext
-from communication.network import MPIConnector
-from communication.communication_tags import *
+from .network import MPIConnector
+from .communication_tags import *
 
 #comunicação só de espalhar o dataset (pra organizar)
 class TorrentEngine:

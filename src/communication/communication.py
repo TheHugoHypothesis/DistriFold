@@ -1,7 +1,8 @@
 import time
-from communication.communication_tags import *
+from logger import print_to_node as print
+from .communication_tags import *
 from node_context import NodeContext
-from communication.network import MPIConnector
+from .network import MPIConnector
 
 #comunicação padrão
 class CommunicationService:

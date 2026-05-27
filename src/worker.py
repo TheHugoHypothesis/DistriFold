@@ -1,4 +1,5 @@
 import time
+from logger import print_to_node as print
 from sklearn.model_selection import KFold
 from node_context import NodeContext
 from communication.network import MPIConnector

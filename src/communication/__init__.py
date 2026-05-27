@@ -1,1 +1,1 @@
-from communication.communication import CommunicationService
+from .communication import CommunicationService

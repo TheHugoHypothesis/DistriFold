@@ -1,4 +1,5 @@
 import time
+from logger import print_to_node as print
 import numpy as np
 from sklearn.model_selection import KFold
 from node_context import NodeContext
@@ -21,9 +22,9 @@ class LeaderWork:
         X = data.data
         y = data.target
         print(f"[Líder] Dataset Breast Cancer carregado com sucesso. Formato: {X.shape}")
-
-
         return X, y
+    
+    
     
     #Comm só chama isso se ele for lider
     def run(self):
