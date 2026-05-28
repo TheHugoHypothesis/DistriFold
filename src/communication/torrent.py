@@ -1,9 +1,11 @@
+from src.communication.communication_tags import TAG_NODE_READY
 import time
 from logger import print_to_node as print
 import numpy as np
 from node_context import NodeContext
 from .network import MPIConnector
 from .communication_tags import *
+import threading
 
 #comunicação só de espalhar o dataset (pra organizar)
 class TorrentEngine:
@@ -18,7 +20,8 @@ class TorrentEngine:
 
     #Só lider faz a divisão dos primeiros pedaços
     def distribute_as_leader(self, X, y):
-        size = self.context.size
+        with self.context.lock:
+            size = len(self.context.leader_context["alive_nodes"]) #Numero da divisão inicial é os nós vivos inicial
         self.have = [True] * size  # O líder já tem todos os pedaços
         self.peer_haves = {i: [False] * size for i in range(size)}
         self.peer_haves[self.context.rank] = self.have
@@ -34,14 +37,17 @@ class TorrentEngine:
         print(f"[Torrent Líder] Dataset particionado em {size} chunks.")
         
         #Envia Metadados para todos
-        meta = {"total_chunks": size} #A divisão inicial sempre vai ser igual ao numero de nós
-        for dest in range(size):
+        with self.context.lock:
+            meta = {"total_chunks": size} #A divisão inicial sempre vai ser igual ao numero de nós
+
+        with self.context.lock:
+            alive_nodes = self.context.leader_context["alive_nodes"]
+
+        for dest in alive_nodes:
             if dest != self.context.rank:
                 self.connector.send(meta, dest=dest, tag=TAG_TORRENT_META)
         
-        
-        #Seeding Inicial (Envia 1 chunk único para cada worker)
-        for dest in range(size):
+        for dest in alive_nodes:
             if dest != self.context.rank:
                 chunk_payload = (X_splits[dest], y_splits[dest])
                 self.connector.send(chunk_payload, dest=dest, tag=TAG_TORRENT_SEED)
@@ -49,7 +55,8 @@ class TorrentEngine:
         
 
         #Passa a agir como seed normalmente
-        self._run_swarm_loop()
+        torrent_thread = threading.Thread(target=self._run_swarm_loop, daemon=True)
+        torrent_thread.start()
 
     
     #Baixar os primeiros dataset do lider
@@ -72,19 +79,25 @@ class TorrentEngine:
             initial_payload = self.connector.check_message(source=self.context.leader_rank, tag=TAG_TORRENT_SEED)
             time.sleep(0.05)
 
-        # Adiciona o próprio pedaço inicial ao inventário
+        #Adiciona o próprio pedaço inicial ao inventário
         self.chunks[self.context.rank] = initial_payload   #Pedaço 1 vai pro nó 1, então sempre encaixa
         self.have[self.context.rank] = True
         self.peer_haves[self.context.rank] = self.have
         print(f"[Worker {self.context.rank}] Recebi meu chunk inicial {self.context.rank} do Líder.")
 
-        #entra no loop de ficar trocando
-        self._run_swarm_loop()
+        #entra no loop de ficar trocando, mesmo se completar
+        torrent_thread = threading.Thread(target=self._run_swarm_loop, daemon=True)
+        torrent_thread.start()
 
+        while not all(self.have):
+            time.sleep(0.1)
 
-        # 4. Concatena os pedaços e reconstrói o dataset original
+        #Concatena os pedaços e reconstrói o df
         X_complete = np.vstack([self.chunks[i][0] for i in range(total_chunks)])
         y_complete = np.concatenate([self.chunks[i][1] for i in range(total_chunks)])
+        
+        #Avisa o lider que terminou
+        self.connector.send(self.context.rank, dest=self.context.leader_rank, tag=TAG_NODE_READY)
         print(f"[Worker {self.context.rank}] Dataset 100% reconstruído com sucesso! Formato: {X_complete.shape}")
         
         return X_complete, y_complete
@@ -99,9 +112,7 @@ class TorrentEngine:
         print(f"[Nó {self.context.rank}] Entrou no loop P2P Swarm. Inventário: {self.have}")
         
         #Por enquanto, loop roda enquanto existir qualquer nó que não tenha completado seu download
-        while not self._all_nodes_completed():
-            if self.context.stop_event.is_set():
-                break
+        while not self.context.stop_event.is_set():
             now = time.time()
 
             # A cada 0.5s, divulga seu inventário (HAVE) para o cluster

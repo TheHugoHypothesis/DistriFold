@@ -22,7 +22,7 @@ def print_to_node(*args, **kwargs):
     
     src_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(src_dir)
-    output_dir = os.path.join(project_root, "src/Output")
+    output_dir = os.path.join(project_root, f"src/Locals/Rank {rank}")
     os.makedirs(output_dir, exist_ok=True)
 
     

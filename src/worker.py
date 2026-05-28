@@ -34,6 +34,7 @@ class WorkerWork:
         splits = list(kf.split(X))
         print(f"[Worker {self.context.rank}] Pronto e aguardando ordens de Folds do Líder.")
         
+        
         while not self.context.stop_event.is_set():
             #Escuta ordens do lider
             fold_id = self.connector.check_message(source=self.context.leader_rank, tag=TAG_TASK)

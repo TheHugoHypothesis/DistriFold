@@ -40,7 +40,7 @@ class MainNode:
         self.worker_thread = None
 
     def elect_leader(self):
-        leader_rank = self.connector_control.comm.allreduce(self.context.rank, op=MPI.MAX)
+        leader_rank = self.connector_control.comm.allreduce(self.context.rank, op=MPI.MIN)
         with self.context.lock:
             self.context.leader_rank = leader_rank
             self.context.last_heartbeat = time.time()

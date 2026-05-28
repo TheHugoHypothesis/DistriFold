@@ -36,13 +36,14 @@ class LeaderWork:
         with self.context.lock:
             is_initial_leader = (self.context.leader_context["epoch"] == 0)
 
+
         if is_initial_leader:
             print(f"[Líder Rank {self.context.rank}] Iniciando Fase de Torrenting P2P...")
             X, y = self._carregar_dataset()
             self.torrent.distribute_as_leader(X, y)
             print("[Líder] Distribuição de dados via P2P concluída.")
             
-            # Inicializa a fila de folds no contexto
+            #Inicializa a fila de folds no contexto
             with self.context.lock:
                 ctx = self.context.leader_context
                 ctx["pending_folds"] = list(range(self.num_folds))
@@ -83,7 +84,7 @@ class LeaderWork:
                 active_assignments = ctx["active_assignments"]
                 completed_folds = ctx["completed_folds"]
                 
-                for worker_rank in range(self.context.size):
+                for worker_rank in ctx["alive_nodes"]:
                     if worker_rank == self.context.leader_rank:
                         #TODO Aqui colocar para o lider trabalhar localmente também
                         continue
