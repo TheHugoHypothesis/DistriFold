@@ -1,10 +1,152 @@
-[2026-05-30 00:28:10.996] [Nó 1] Iniciando eleição...
-[2026-05-30 00:28:10.997] [Worker 1] Iniciando e disparando eleição para descobrir líder...
-[2026-05-30 00:28:12.514] [Nó 1] Fim da contagem de tempo. Menor é o 0. Novo líder eleito!
-[2026-05-30 00:28:12.604] [Worker 1] Iniciando verificação do Dataset...
-[2026-05-30 00:28:12.605] [Worker 1] Pedindo metadados ao líder...
-[2026-05-30 00:28:12.606] mandei pro leader
-[2026-05-30 00:28:12.609] Esperei
-[2026-05-30 00:28:12.611] recebi meta
-[2026-05-30 00:28:12.664] [Worker 1] Recebi meu chunk inicial 1 do Líder.
-[2026-05-30 00:28:12.665] [Nó 1] Entrou no loop P2P Swarm. Inventário: [False, True]
+[2026-05-30 01:07:00.537] [Nó 1] Iniciando eleição...
+[2026-05-30 01:07:00.538] [Worker 1] Iniciando e disparando eleição para descobrir líder...
+[2026-05-30 01:07:02.058] [Nó 1] Fim da contagem de tempo. Menor é o 0. Novo líder eleito!
+[2026-05-30 01:07:02.146] [Worker 1] Iniciando verificação do Dataset...
+[2026-05-30 01:07:02.148] [Worker 1] Pedindo metadados ao líder...
+[2026-05-30 01:07:02.149] mandei pro leader
+[2026-05-30 01:07:02.150] Esperei
+[2026-05-30 01:07:02.252] mandei pro leader dnv
+[2026-05-30 01:07:02.253] Esperei
+[2026-05-30 01:07:02.354] mandei pro leader dnv
+[2026-05-30 01:07:02.355] Esperei
+[2026-05-30 01:07:02.457] mandei pro leader dnv
+[2026-05-30 01:07:02.459] Esperei
+[2026-05-30 01:07:02.561] mandei pro leader dnv
+[2026-05-30 01:07:02.563] Esperei
+[2026-05-30 01:07:02.665] mandei pro leader dnv
+[2026-05-30 01:07:02.667] Esperei
+[2026-05-30 01:07:02.769] mandei pro leader dnv
+[2026-05-30 01:07:02.770] Esperei
+[2026-05-30 01:07:02.872] mandei pro leader dnv
+[2026-05-30 01:07:02.873] Esperei
+[2026-05-30 01:07:02.975] mandei pro leader dnv
+[2026-05-30 01:07:02.977] Esperei
+[2026-05-30 01:07:03.079] mandei pro leader dnv
+[2026-05-30 01:07:03.080] Esperei
+[2026-05-30 01:07:03.182] mandei pro leader dnv
+[2026-05-30 01:07:03.183] Esperei
+[2026-05-30 01:07:03.285] mandei pro leader dnv
+[2026-05-30 01:07:03.286] Esperei
+[2026-05-30 01:07:03.387] mandei pro leader dnv
+[2026-05-30 01:07:03.388] Esperei
+[2026-05-30 01:07:03.490] mandei pro leader dnv
+[2026-05-30 01:07:03.491] Esperei
+[2026-05-30 01:07:03.593] mandei pro leader dnv
+[2026-05-30 01:07:03.594] Esperei
+[2026-05-30 01:07:03.696] mandei pro leader dnv
+[2026-05-30 01:07:03.698] Esperei
+[2026-05-30 01:07:03.799] mandei pro leader dnv
+[2026-05-30 01:07:03.800] Esperei
+[2026-05-30 01:07:03.901] mandei pro leader dnv
+[2026-05-30 01:07:03.902] Esperei
+[2026-05-30 01:07:04.004] mandei pro leader dnv
+[2026-05-30 01:07:04.005] Esperei
+[2026-05-30 01:07:04.107] mandei pro leader dnv
+[2026-05-30 01:07:04.108] Esperei
+[2026-05-30 01:07:04.210] mandei pro leader dnv
+[2026-05-30 01:07:04.211] Esperei
+[2026-05-30 01:07:04.312] mandei pro leader dnv
+[2026-05-30 01:07:04.313] Esperei
+[2026-05-30 01:07:04.415] mandei pro leader dnv
+[2026-05-30 01:07:04.416] Esperei
+[2026-05-30 01:07:04.517] mandei pro leader dnv
+[2026-05-30 01:07:04.518] Esperei
+[2026-05-30 01:07:04.621] mandei pro leader dnv
+[2026-05-30 01:07:04.622] Esperei
+[2026-05-30 01:07:04.723] mandei pro leader dnv
+[2026-05-30 01:07:04.725] Esperei
+[2026-05-30 01:07:04.828] mandei pro leader dnv
+[2026-05-30 01:07:04.830] Esperei
+[2026-05-30 01:07:04.942] mandei pro leader dnv
+[2026-05-30 01:07:04.943] Esperei
+[2026-05-30 01:07:05.061] mandei pro leader dnv
+[2026-05-30 01:07:05.062] Esperei
+[2026-05-30 01:07:05.164] mandei pro leader dnv
+[2026-05-30 01:07:05.165] Esperei
+[2026-05-30 01:07:05.266] mandei pro leader dnv
+[2026-05-30 01:07:05.267] Esperei
+[2026-05-30 01:07:05.369] mandei pro leader dnv
+[2026-05-30 01:07:05.369] Esperei
+[2026-05-30 01:07:05.471] mandei pro leader dnv
+[2026-05-30 01:07:05.473] Esperei
+[2026-05-30 01:07:05.475] recebi meta
+[2026-05-30 01:07:05.679] [Worker 1] Recebi meu chunk inicial 1 do Líder.
+[2026-05-30 01:07:05.680] [Nó 1] Entrou no loop P2P Swarm. Inventário: [False, True]
+[2026-05-30 01:07:05.681] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:05.682] [Nó 1] Solicitando Chunk 0 do Nó 0
+[2026-05-30 01:07:05.683] [Nó 1] Recebi HAVE do Nó 2: [True, False]
+[2026-05-30 01:07:05.684] [Nó 1] Solicitando Chunk 0 do Nó 2
+[2026-05-30 01:07:05.685] [Nó 1] Recebi HAVE do Nó 3: [False, True]
+[2026-05-30 01:07:05.687] [Nó 1] Recebi HAVE do Nó 4: [True, False]
+[2026-05-30 01:07:05.688] [Nó 1] Solicitando Chunk 0 do Nó 4
+[2026-05-30 01:07:05.740] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:05.742] [Nó 1] Solicitando Chunk 0 do Nó 0
+[2026-05-30 01:07:05.793] [Nó 1] Recebi e salvei Chunk 0 do Nó 0! Novo HAVE: [True, True]
+[2026-05-30 01:07:05.845] [Nó 1] Recebi e salvei Chunk 0 do Nó 0! Novo HAVE: [True, True]
+[2026-05-30 01:07:05.896] [Worker 1] Dataset 'breast_cancer' salvo com sucesso em D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 1\breast_cancer.npz
+[2026-05-30 01:07:05.897] [Worker 1] Dataset 100% reconstruído com sucesso! Formato: (569, 30)
+[2026-05-30 01:07:05.898] [Worker 1] Pronto e aguardando ordens de Folds do Líder.
+[2026-05-30 01:07:05.899] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:05.900] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:05.901] Worker 1 sincronizou contexto para epoch 1
+[2026-05-30 01:07:05.902] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:05.903] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:05.971] [Nó 1] Recebi e salvei Chunk 0 do Nó 2! Novo HAVE: [True, True]
+[2026-05-30 01:07:05.972] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:06.073] [Nó 1] Recebi e salvei Chunk 0 do Nó 4! Novo HAVE: [True, True]
+[2026-05-30 01:07:06.239] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:06.336] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:06.337] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:06.351] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:06.688] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:06.841] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:06.860] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:06.863] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:07.255] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:07.359] [Worker 1] Treinando Fold 0...
+[2026-05-30 01:07:07.359] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:07.361] 0
+� 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:07.362] {'n_splits': 2, 'shuffle': True, 'random_state': 42}
+[2026-05-30 01:07:07.362] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:07.685] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:07.740] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:07.904] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:08.058] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:08.218] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:08.323] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:08.487] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:08.748] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:08.852] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:09.012] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:09.069] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:09.229] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:09.504] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:09.505] [Worker 1] Concluiu e enviou métricas do Fold 0
+[2026-05-30 01:07:09.556] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:09.606] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:09.608] Worker 1 sincronizou contexto para epoch 3
+[2026-05-30 01:07:09.609] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:09.610] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:09.757] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:10.022] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:10.237] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:10.462] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:10.556] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:10.555] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:10.558] Worker 1 sincronizou contexto para epoch 5
+[2026-05-30 01:07:10.614] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:10.856] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:10.937] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:11.156] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:11.239] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:11.406] [Nó 1] Recebi HAVE do Nó 0: [True, True]
+[2026-05-30 01:07:11.507] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:11.592] Worker 1 recebeu PING do líder
+[2026-05-30 01:07:11.593] Worker 1 sincronizou contexto para epoch 6
+[2026-05-30 01:07:11.708] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:11.807] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:12.049] [Nó 1] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:12.272] [Nó 1] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:12.541] [Nó 1] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:12.606] [Worker 1] Sinal de encerramento recebido do Líder. Desconectando...

@@ -40,30 +40,7 @@ class TorrentEngine:
             self.chunks[i] = (X_splits[i], y_splits[i])
         print(f"[Torrent Líder] Dataset particionado em {self.total_chunkds} chunks.")
         
-        #Envia Metadados para todos
-        with self.context.lock:
-            meta = {"total_chunks": self.total_chunkds, "dataset_id": dataset_id}
-
-        with self.context.lock:
-            alive_nodes = self.context.leader_context["alive_nodes"]
-
-        for dest in alive_nodes:
-            if dest != self.context.rank:
-                if not self.context._node_esta_ativo():
-                    time.sleep(0.1)
-                    continue
-                self.connector.send(meta, dest=dest, tag=TAG_TORRENT_META)
         
-        for dest in alive_nodes:
-            if dest != self.context.rank:
-                if not self.context._node_esta_ativo():
-                    time.sleep(0.1)
-                    continue
-                chunk_payload = (X_splits[dest], y_splits[dest])
-                self.connector.send(chunk_payload, dest=dest, tag=TAG_TORRENT_SEED)
-                print(f"[Torrent Líder] Enviado Chunk Inicial {dest} para Worker {dest}")
-        
-
         #Passa a agir como seed normalmente
         torrent_thread = threading.Thread(target=self._run_swarm_loop, daemon=True)
         torrent_thread.start()
@@ -105,7 +82,7 @@ class TorrentEngine:
         self.peer_haves[self.context.leader_rank] = [True] * self.total_chunks  #exceto o lider que é tudo true
 
 
-        
+        #Caso de erros apenas
         dataset_id = meta.get("dataset_id", "breast_cancer")
 
         
@@ -144,20 +121,35 @@ class TorrentEngine:
 
 
 
-        #Pega o chunk inicial
+        #Solicita um chunk inicial ao líder
+        chunk_id = self.context.rank
+        if chunk_id >= self.total_chunks:
+            chunk_id = self.context.rank % self.total_chunks
+
         initial_payload = None
+        last_req_time = 0
         while initial_payload is None:
             if not self.context._node_esta_ativo():
                 time.sleep(0.1)
                 continue
-            initial_payload = self.connector.check_message(source=self.context.leader_rank, tag=TAG_TORRENT_SEED)
+
+            now = time.time()
+            if now - last_req_time > 0.5:
+                self.connector.send(chunk_id, dest=self.context.leader_rank, tag=TAG_TORRENT_REQ)
+                last_req_time = now
+
+            initial_payload = self.connector.check_message(source=self.context.leader_rank, tag=TAG_TORRENT_PIECE)
             time.sleep(0.05)
 
-        #Adiciona o próprio pedaço inicial ao inventário
-        self.chunks[self.context.rank] = initial_payload   #Pedaço 1 vai pro nó 1, então sempre encaixa
-        self.have[self.context.rank] = True
+        if isinstance(initial_payload, tuple) and len(initial_payload) == 2 and isinstance(initial_payload[0], int):
+            chunk_id, chunk_data = initial_payload
+        else:
+            chunk_data = initial_payload
+
+        self.chunks[chunk_id] = chunk_data
+        self.have[chunk_id] = True
         self.peer_haves[self.context.rank] = self.have
-        print(f"[Worker {self.context.rank}] Recebi meu chunk inicial {self.context.rank} do Líder.")
+        print(f"[Worker {self.context.rank}] Recebi meu chunk inicial {chunk_id} do Líder.")
 
         #entra no loop de ficar trocando, mesmo se completar
         torrent_thread = threading.Thread(target=self._run_swarm_loop, daemon=True)

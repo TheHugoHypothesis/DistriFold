@@ -1,10 +1,248 @@
-[2026-05-30 00:28:10.996] [Nó 0] Iniciando eleição...
-[2026-05-30 00:28:10.998] [Worker 0] Iniciando e disparando eleição para descobrir líder...
-[2026-05-30 00:28:12.514] [Nó 0] Fim da contagem de tempo. Sou o menor ativo. Novo líder eleito!
-[2026-05-30 00:28:12.516] aguardando eleição
-[2026-05-30 00:28:12.516] [Líder 0] Redundância: Sincronizando contexto (epoch 0) com os backups...
-[2026-05-30 00:28:12.517] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
-[2026-05-30 00:28:12.518] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
-[2026-05-30 00:28:12.522] [Torrent Líder] Dataset particionado em 2 chunks.
-[2026-05-30 00:28:12.565] [Torrent Líder] Enviado Chunk Inicial 1 para Worker 1
-[2026-05-30 00:28:12.604] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-05-30 01:07:00.538] [Nó 0] Iniciando eleição...
+[2026-05-30 01:07:00.539] [Worker 0] Iniciando e disparando eleição para descobrir líder...
+[2026-05-30 01:07:02.060] [Nó 0] Fim da contagem de tempo. Sou o menor ativo. Novo líder eleito!
+[2026-05-30 01:07:02.062] [Líder 0] Redundância: Sincronizando contexto (epoch 0) com os backups...
+[2026-05-30 01:07:02.062] aguardando eleição
+[2026-05-30 01:07:02.063] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
+[2026-05-30 01:07:02.064] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
+[2026-05-30 01:07:02.146] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-05-30 01:07:04.919] [Torrent Líder] Dataset particionado em 2 chunks.
+[2026-05-30 01:07:05.069] [Líder] Distribuição de dados via P2P concluída.
+[2026-05-30 01:07:05.069] [Nó 0] Entrou no loop P2P Swarm. Inventário: [True, True]
+[2026-05-30 01:07:05.070] [Líder 0] Iniciando agendamento dinâmico dos 2 Folds...
+[2026-05-30 01:07:05.071] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.124] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.124] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-05-30 01:07:05.126] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.126] Líder detectou timeout do Nó 2 (sem ACK recente)!
+[2026-05-30 01:07:05.127] Líder detectou timeout do Nó 3 (sem ACK recente)!
+[2026-05-30 01:07:05.129] Líder detectou timeout do Nó 4 (sem ACK recente)!
+[2026-05-30 01:07:05.178] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.180] [Nó 0] Recebi REQ de Chunk 1 do Nó 3
+[2026-05-30 01:07:05.183] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.219] [Líder 0] Redundância: Sincronizando contexto (epoch 1) com os backups...
+[2026-05-30 01:07:05.239] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.240] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.241] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.243] [Nó 0] Recebi REQ de Chunk 0 do Nó 4
+[2026-05-30 01:07:05.295] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.296] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.297] [Nó 0] Recebi HAVE do Nó 3: [False, True]
+[2026-05-30 01:07:05.298] [Nó 0] Recebi REQ de Chunk 0 do Nó 3
+[2026-05-30 01:07:05.299] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.351] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.352] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.352] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.404] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.405] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.406] [Nó 0] Recebi REQ de Chunk 0 do Nó 2
+[2026-05-30 01:07:05.406] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.408] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.410] [Nó 0] Recebi HAVE do Nó 4: [True, False]
+[2026-05-30 01:07:05.411] [Nó 0] Recebi REQ de Chunk 1 do Nó 4
+[2026-05-30 01:07:05.463] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.463] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.464] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.467] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.518] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.519] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.520] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.521] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.572] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.573] [Nó 0] Recebi REQ de Chunk 1 do Nó 1
+[2026-05-30 01:07:05.575] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.576] [Nó 0] Recebi HAVE do Nó 2: [True, False]
+[2026-05-30 01:07:05.577] [Nó 0] Recebi REQ de Chunk 1 do Nó 2
+[2026-05-30 01:07:05.578] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.579] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.630] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.632] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.633] [Nó 0] Recebi REQ de Chunk 1 do Nó 2
+[2026-05-30 01:07:05.634] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.635] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.686] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.687] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.688] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.689] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.741] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.743] [Nó 0] Recebi HAVE do Nó 1: [False, True]
+[2026-05-30 01:07:05.743] [Nó 0] Recebi REQ de Chunk 0 do Nó 1
+[2026-05-30 01:07:05.744] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.745] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.746] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.798] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.799] [Nó 0] Recebi REQ de Chunk 0 do Nó 1
+[2026-05-30 01:07:05.801] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.802] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.803] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.855] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.855] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.856] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.857] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.910] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.911] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.912] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.913] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.966] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:05.967] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:05.970] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:05.971] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:05.973] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:06.028] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.030] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.033] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.035] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.089] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.091] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.093] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.094] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.146] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.147] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.148] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:06.148] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.150] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:06.152] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.207] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.226] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.227] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.236] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.287] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.289] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:06.290] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.295] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.297] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.301] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:06.305] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:06.306] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:06.307] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:06.351] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.353] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.355] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.356] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.359] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:06.361] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:06.361] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:06.362] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:06.408] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.409] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.409] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.410] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.413] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:06.414] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:06.415] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:06.416] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:06.462] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.463] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.465] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.467] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.468] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:06.469] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:06.470] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:06.471] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:06.519] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.521] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.522] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.522] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.578] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.579] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.580] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.583] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.635] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.636] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.637] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.638] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.639] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:06.691] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.692] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.693] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.694] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.747] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.748] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.749] [Líder] Enviando metadados respondendo ao pedido do Nó 3
+[2026-05-30 01:07:06.750] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.804] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.807] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.809] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:06.809] [Líder] Enviando metadados respondendo ao pedido do Nó 4
+[2026-05-30 01:07:06.829] pending_folds: [1]
+[2026-05-30 01:07:06.830] [Líder 0] Atribuiu Fold 0 para o Worker 1
+[2026-05-30 01:07:06.831] pending_folds: []
+[2026-05-30 01:07:06.833] [Líder 0] Atribuiu Fold 1 para o Worker 2
+[2026-05-30 01:07:06.863] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.864] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.866] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:06.917] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.917] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:06.918] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:06.969] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:06.970] [Líder] Enviando metadados respondendo ao pedido do Nó 2
+[2026-05-30 01:07:07.021] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:07.072] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:07.124] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:07.126] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:07.177] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:07.228] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-05-30 01:07:07.331] [Líder 0] Redundância: Sincronizando contexto (epoch 3) com os backups...
+[2026-05-30 01:07:07.338] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:07.339] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:07.340] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:07.343] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:07.382] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:07.383] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:07.435] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:07.689] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:07.944] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:07.948] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:08.051] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:08.355] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:08.407] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:08.408] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:08.457] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:08.459] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:08.814] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:08.966] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:08.967] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:09.068] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:09.467] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:09.468] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:09.468] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:09.475] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:09.519] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:09.528] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:09.579] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:09.731] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:09.872] [Líder 0] Sucesso! Recebido resultado do Fold 1 do Worker 2
+[2026-05-30 01:07:10.136] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:10.237] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:10.379] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-05-30 01:07:10.390] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:10.393] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:10.481] pending_folds: []
+[2026-05-30 01:07:10.482] [Líder 0] Atribuiu Fold 0 para o Worker 2
+[2026-05-30 01:07:10.486] [Líder 0] Redundância: Sincronizando contexto (epoch 5) com os backups...
+[2026-05-30 01:07:10.583] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:10.584] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:10.585] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:10.586] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:10.638] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:10.689] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:10.800] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:11.053] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:11.054] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:11.094] [Líder 0] Sucesso! Recebido resultado do Fold 0 do Worker 1
+[2026-05-30 01:07:11.106] [Nó 0] Recebi HAVE do Nó 1: [True, True]
+[2026-05-30 01:07:11.465] [Nó 0] Recebi HAVE do Nó 3: [True, True]
+[2026-05-30 01:07:11.538] [Líder 0] Redundância: Sincronizando contexto (epoch 6) com os backups...
+[2026-05-30 01:07:11.550] Líder recebeu ACK-Pronto do Nó 1
+[2026-05-30 01:07:11.551] Líder recebeu ACK-Pronto do Nó 2
+[2026-05-30 01:07:11.552] Líder recebeu ACK-Pronto do Nó 3
+[2026-05-30 01:07:11.553] Líder recebeu ACK-Pronto do Nó 4
+[2026-05-30 01:07:11.669] [Nó 0] Recebi HAVE do Nó 2: [True, True]
+[2026-05-30 01:07:11.669] [Nó 0] Recebi HAVE do Nó 4: [True, True]
+[2026-05-30 01:07:11.705] Final:
+[2026-05-30 01:07:11.706] Fold 0: Acurácia = 0.9368 | F1-Score = 0.9368 | Loss = 0.2233
+[2026-05-30 01:07:11.707] Fold 1: Acurácia = 0.9261 | F1-Score = 0.9253 | Loss = 0.2831
+[2026-05-30 01:07:11.708] Acurácia Média : 0.9314 ± 0.0054
+[2026-05-30 01:07:11.709] F1-Score Médio : 0.9311 ± 0.0058
+[2026-05-30 01:07:11.711] Loss Média     : 0.2532 ± 0.0299
+[2026-05-30 01:07:11.711] [Líder] Enviando sinal de encerramento para os workers...
