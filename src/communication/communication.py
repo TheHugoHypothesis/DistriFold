@@ -8,82 +8,99 @@ from .network import MPIConnector
 
 #comunicação padrão
 class CommunicationService:
-    def __init__(self, context: NodeContext, connector: MPIConnector, on_leader_elected_callback):
+    def __init__(self, context: NodeContext, connector: MPIConnector, role_changer):
         self.context = context
         self.connector = connector
-        self.on_leader_elected = on_leader_elected_callback
+        self.role_changer = role_changer
         self.heartbeat_interval = 1.0
         self.timeout_seconds = 3.0
         self.in_election = False
         self.queue_lock = threading.Lock()
         self.outbox = {"leader": [], "worker": []}
         self.inbox = []
-        
         self.leader_tag = "LEADER"
+        self._isend_list = []
 
 
     #Simula janela de quedas do nó
     def run(self):
         # eleição inicial realista
+
+        
         self.start_election()
+        self.context.last_internet_tick = time.time()
+
+
         while not self.context.stop_event.is_set():
             self.tick()
+
+
 
 
     # ticka todas as funções de comunicação
     def tick(self):
         now = time.time()
         if not self.context._node_esta_ativo():
-            return
+            return #Se o nó tiver em modo queda, ele para de tickar comunicações
             
 
         #Dados que vem de "fora"
-        self.collect()
+        
             
-        #SIMULA QUEDA (apenas quando teste define timeout)
-        simulate_drop = self.context.teste is not None and self.context.teste.get("time_timeout", 0) > 0
-        if simulate_drop and (now - self.context.last_internet_tick > 1):
+
+        #RETORNO DE QUEDA (simulada)
+        if (now - self.context.last_internet_tick > 1):
+
+            time.sleep(3)
+            self.collect() #Limpa tudo que chegou, pois estava sem conexão
+
             with self.context.lock:
                 if not self.context.recovering:
+                    print(f"[Nó {self.context.rank}] Voltando de queda...")
                     self.context.recovering = True
-                    self.context.needs_full_sync = True
+                    self.context.old_leader = self.context.leader_rank
                     self.context.leader_rank = None
                     self.in_election = False
-                    with self.queue_lock:
+                    self.role_changer()
 
+
+                    with self.queue_lock:
                         self.outbox = {"leader": [], "worker": []}
                         self.inbox = []
-            time.sleep(0.1)
 
-
-        with self.context.lock:
-            self.context.last_internet_tick = now
-
+            
 
 
         
+        #parte do código para mudar:
+        
 
         #sempre checa se alguem perguntou por lider e resonde
+        #TODO Jogar isso em outro lugar
         for source in range(self.context.size):
             if source == self.context.rank:
                 continue
+
             msg_leader_query = self.Poll(source=source, tag=TAG_LEADER_QUERY)
             if msg_leader_query is not None:
                 with self.context.lock:
                     leader_rank = self.context.leader_rank
                 if leader_rank is not None:
-                    self.connector.send(leader_rank, dest=source, tag=TAG_LEADER_REPLY)
+                    self.connector.isend(leader_rank, dest=source, tag=TAG_LEADER_ANNOUNCE)
 
+
+            #TODO jogar para leader_send ou outro lugar isso
             msg_context_req = self.Poll(source=source, tag=TAG_CONTEXT_REQ)
             if msg_context_req is not None:
                 if self.context.rank == self.context.leader_rank:
                     with self.context.lock:
                         ctx_payload = dict(self.context.leader_context)
-                    self.connector.send(ctx_payload, dest=source, tag=TAG_CONTEXT_RESP)
+                    self.connector.isend(ctx_payload, dest=source, tag=TAG_STATE_SYNC)
         
 
 
         #sempre checa se alguém anunciou lider
+        #TODO Jogar isso em outro lugar, e ver se isso é de fato necessário
         for source in range(self.context.size):
             if source == self.context.rank:
                 continue
@@ -93,24 +110,29 @@ class CommunicationService:
                     self.context.leader_rank = msg_announce
                     self.context.last_heartbeat = time.time()
                     self.in_election = False
-                if self.on_leader_elected:
-                    self.on_leader_elected(msg_announce)
+                
+                    self.role_changer()
                 #return
 
 
         #sempre checa se alguém pediu eleição pra poder participar, isso tem prioridade
         for source in range(self.context.size):
+            if source == self.context.rank:
+                continue
+
             msg_start = self.Poll(source=source, tag=TAG_ELECTION_START)
 
             if msg_start:
                 with self.context.lock:
                     ctx_payload = dict(self.context.leader_context)
-                self.connector.send(ctx_payload, dest=source, tag=TAG_ELECTION_CONTEXT)
-                self.connector.send(self.context.rank, dest=source, tag=TAG_ELECTION_RANK)
+                self.connector.isend(ctx_payload, dest=source, tag=TAG_ELECTION_CONTEXT)
+                self.connector.isend(self.context.rank, dest=source, tag=TAG_ELECTION_RANK)
+                print(f"[Nó {self.context.rank}] Alguém, pediu eleição")
                 self.start_election()
                 #return
 
 
+        #-----
 
 
 
@@ -119,11 +141,20 @@ class CommunicationService:
         if self.context.rank == self.context.leader_rank:
             self._leader_send()
             time.sleep(self.heartbeat_interval)
+        else:
+            self._worker_send()
 
 
         #Envio de todo Resto
         self._flush_outbox()
+
+        self.collect()
+
+        with self.context.lock:
+            self.context.last_internet_tick = time.time()
+
         time.sleep(0.05)
+
 
 
 
@@ -135,6 +166,7 @@ class CommunicationService:
             if self.in_election:
                 return
             self.in_election = True
+            self.context.old_leader = self.context.leader_rank
             self.context.leader_rank = None
 
 
@@ -142,18 +174,23 @@ class CommunicationService:
         for dest in range(self.context.size):
             if dest == self.context.rank:
                 continue
-    
-            self.connector.send("ELECTION_START", dest=dest, tag=TAG_ELECTION_START)
+                
+            self.connector.isend("ELECTION_START", dest=dest, tag=TAG_ELECTION_START)
             
-
         #inicia contagem de tempo
-        lowest = self.context.rank
+        if self.context.has_dataset_completed:
+            lowest = self.context.rank
+        else: lowest = None
         contexts = []
 
+
+        
         with self.context.lock:
             contexts.append(dict(self.context.leader_context))
+        
+
             
-        end_time = time.time() + 1.5
+        end_time = time.time() + 2.5 #segundos que dura a eleição
         while time.time() < end_time:
             if self.context.stop_event.is_set():
                 break
@@ -166,18 +203,25 @@ class CommunicationService:
                 if source == self.context.rank:
                     continue
 
-                # se alguém pediu eleição no meio, respondemos com nosso número
+                # se alguém pediu eleição no meio, respondemos com nosso número, caso temos o dataset
                 msg_start = self.Poll(source=source, tag=TAG_ELECTION_START)
 
                 if msg_start:
-                    with self.context.lock:
-                        ctx_payload = dict(self.context.leader_context)
-                    self.connector.send(ctx_payload, dest=source, tag=TAG_ELECTION_CONTEXT)
-                    self.connector.send(self.context.rank, dest=source, tag=TAG_ELECTION_RANK)
+                    if not self.context.has_dataset_completed:
+                        print(f"[Nó {self.context.rank}] Não tenho dataset, não vou me candidatar")
+
+                    else:
+                        with self.context.lock:
+                            ctx_payload = dict(self.context.leader_context)
+                        self.connector.isend(ctx_payload, dest=source, tag=TAG_ELECTION_CONTEXT)
+                        self.connector.isend(self.context.rank, dest=source, tag=TAG_ELECTION_RANK)
 
                 
                 #coleta rank do outro
                 rank = self.Poll(source=source, tag=TAG_ELECTION_RANK)
+                if lowest is None:
+                    lowest = rank
+
                 if rank is not None:
                     if rank < lowest:
                         lowest = rank
@@ -188,18 +232,23 @@ class CommunicationService:
 
             time.sleep(0.05)
 
+        if lowest is None:
+            lowest = 0
         
-        #se ninguém menor respondeu, eu viro líder e anuncio
         if lowest == self.context.rank:
             print(f"[Nó {self.context.rank}] Fim da contagem de tempo. Sou o menor ativo. Novo líder eleito!")
+
+            
+
             with self.context.lock:
                 if contexts:
                     self.context.leader_context = max(contexts, key=lambda c: c.get("epoch", 0))
                     self.context.context_dirty = True
 
+
             for dest in range(self.context.size):
                 if dest != self.context.rank:
-                    self.connector.send(self.context.rank, dest=dest, tag=TAG_LEADER_ANNOUNCE)
+                    self.connector.isend(self.context.rank, dest=dest, tag=TAG_LEADER_ANNOUNCE)
 
 
             
@@ -207,13 +256,56 @@ class CommunicationService:
         else:
             print(f"[Nó {self.context.rank}] Fim da contagem de tempo. Menor é o {lowest}. Novo líder eleito!")
         
+
         with self.context.lock:
             self.context.leader_rank = lowest
             self.context.last_heartbeat = time.time()
-            self.in_election = False
             if contexts:
                 self.context.leader_context = max(contexts, key=lambda c: c.get("epoch", 0))
-        self.on_leader_elected(self.context.rank)
+
+
+        self.in_election = False
+        self.role_changer()
+  
+
+
+    def _worker_send(self):
+        if self.context.recovering:
+            return
+
+        with self.context.lock:
+            leader_rank = self.context.leader_rank
+
+        if leader_rank is None:
+            return
+
+        msg = self.Poll(source=leader_rank, tag=TAG_HELLO)
+        if msg:
+            print(f"Worker {self.context.rank} recebeu PING do líder")
+
+            if self.context.ready_to_work:
+                self.enqueue("worker", dest=self.leader_tag, tag=TAG_NODE_READY, payload="ACK")
+            else:
+                self.enqueue("worker", dest=self.leader_tag, tag=TAG_ACK, payload="ACK")
+
+            with self.context.lock:
+                self.context.last_heartbeat = time.time()
+
+        state_msg = self.Poll(source=leader_rank, tag=TAG_STATE_SYNC)
+        if state_msg:
+            with self.context.lock:
+                if state_msg["epoch"] > self.context.leader_context["epoch"]:
+                    self.context.leader_context = state_msg
+                    print(f"Worker {self.context.rank} sincronizou contexto para epoch {state_msg['epoch']}")
+
+
+        if self.context.leader_rank != None:
+            with self.context.lock:
+                elapsed = time.time() - self.context.last_heartbeat
+            if elapsed > self.timeout_seconds:
+                print(f"Worker {self.context.rank} detectou timeout do líder!")
+                self.start_election()
+                time.sleep(0.1)
 
 
 
@@ -223,7 +315,7 @@ class CommunicationService:
         for dest in range(self.context.size):
             if dest == self.context.leader_rank:
                 continue
-            self.connector.send("PING", dest=dest, tag=TAG_HELLO)
+            self.connector.isend("PING", dest=dest, tag=TAG_HELLO)
             
             
         # Clonar o contexto, se mudou
@@ -237,10 +329,14 @@ class CommunicationService:
                 if dest == self.context.leader_rank:
                     continue
 
-                self.connector.send(payload, dest=dest, tag=TAG_STATE_SYNC) 
+                self.connector.isend(payload, dest=dest, tag=TAG_STATE_SYNC) 
 
             with self.context.lock:
                 self.context.context_dirty = False
+
+
+
+
 
 
     def _flush_outbox(self):
@@ -255,7 +351,15 @@ class CommunicationService:
                 if dest is None:
                     remaining.append(entry)
                     continue
-                self.connector.send(entry["data"], dest=dest, tag=entry["tag"])
+                request = self.connector.isend(entry["data"], dest=dest, tag=entry["tag"])
+                self._isend_list.append(request)
+
+                #Dibrlando garbager collector que matava a request
+                alive = []
+                for req in self._isend_list:
+                    if not req.Test():
+                        alive.append(req)
+                self._isend_list = alive
 
 
             if remaining:

@@ -27,21 +27,26 @@ class LeaderWork:
     #Comm só chama isso se ele for lider
     def run(self):
         #Aguarda a eleição do líder inicial
+        time.sleep(0.1)
+        if self.context.leader_rank != self.context.rank or self.context.recovering:
+            return
 
-        print('aguardando eleição')
-        while self.context.leader_rank is None:
-            time.sleep(0.1)
 
         #Distribui o dataset apenas se for a liderança inicial (epoch == 0)
         with self.context.lock:
             is_initial_leader = (self.context.leader_context["epoch"] == 0)
 
 
+
+        print(f"[Líder Rank {self.context.rank}] Iniciando Fase de Torrenting P2P...")
+        X, y = self._carregar_dataset()
+        
+        self.torrent.distribute_as_leader(X, y, self.dataset_id, self.num_folds)
+        print("[Líder] Distribuição de dados via P2P concluída.")
+
+
         if is_initial_leader:
-            print(f"[Líder Rank {self.context.rank}] Iniciando Fase de Torrenting P2P...")
-            X, y = self._carregar_dataset()
-            self.torrent.distribute_as_leader(X, y, self.dataset_id, self.num_folds)
-            print("[Líder] Distribuição de dados via P2P concluída.")
+ 
             
             #Inicializa a fila de folds no contexto
             with self.context.lock:
@@ -71,19 +76,23 @@ class LeaderWork:
 
 
         #loop principal
-        while not self.context.stop_event.is_set():
+        while not self.context.stop_event.is_set():            
             if self.context.recovering:
-                time.sleep(0.1)
-                continue
-            
-            if self.context.leader_rank != self.context.rank:
+                print(f'Voltando de queda, desativando Thread Lider')
                 return
+
+            if self.context.leader_rank != self.context.rank:
+                print(f"[Nó {self.context.rank}] Não é mais líder, encerrando papel de Líder.")
+                return
+            
+            
+
             # if not self.context._node_esta_ativo():
             #     time.sleep(0.1)
             #     continue
 
 
-            end_time = time.time() + 0.5
+            end_time = time.time() + 0.6
             now = time.time()
             while time.time() < end_time:
                 for source in range(self.context.size):
@@ -251,9 +260,12 @@ class LeaderWork:
         local_dir = os.path.join(src_dir, "Locals", f"Rank {self.context.rank}")
         file_path = os.path.join(local_dir, f"{self.dataset_id}.npz")
 
+        
+
         if os.path.exists(file_path):
             print(f"[Worker {self.context.rank}] Dataset '{self.dataset_id}' encontrado localmente! Carregando de {file_path}")
             data = np.load(file_path, allow_pickle=True)
+            self.has_dataset_complete = True
             X = data["X"]
             y = data["y"]
             return X, y

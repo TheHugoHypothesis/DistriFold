@@ -1,4 +1,5 @@
 from mpi4py import MPI
+from logger import print_to_node as print
 
 class MPIConnector:
     def __init__(self, comm):
@@ -18,7 +19,16 @@ class MPIConnector:
         if source is None:
             return None
         if self.comm.iprobe(source=source, tag=tag):
-            return self.comm.recv(source=source, tag=tag)
+            
+            try:
+                return self.comm.recv(source=source, tag=tag)
+            except Exception as e:
+                try:
+                    rank = self.comm.Get_rank()
+                except Exception:
+                    rank = -1
+                print(f"[MPI Debug] Rank {rank} falhou ao receber de source={source}, tag={tag}: {type(e).__name__}: {e}")
+                raise
         return None
     
 
@@ -32,15 +42,25 @@ class MPIConnector:
 
         status = MPI.Status()
         if self.comm.iprobe(source=source, tag=tag, status=status):
-            data = self.comm.recv(
-                source=status.Get_source(),
-                tag=status.Get_tag(),
-                status=status
-            )
-            return {
-                "source": status.Get_source(),
-                "tag": status.Get_tag(),
-                "data": data
-            }
+            real_source = status.Get_source()
+            real_tag = status.Get_tag()
+            try:
+                data = self.comm.recv(
+                    source=real_source,
+                    tag=real_tag,
+                    status=status
+                )
+                return {
+                    "source": real_source,
+                    "tag": real_tag,
+                    "data": data
+                }
+            except Exception as e:
+                try:
+                    rank = self.comm.Get_rank()
+                except Exception:
+                    rank = -1
+                print(f"[MPI Debug] Rank {rank} falhou ao coletar de source={real_source}, tag={real_tag}: {type(e).__name__}: {e}")
+                raise
 
         return None

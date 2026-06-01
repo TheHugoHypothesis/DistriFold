@@ -9,6 +9,7 @@ class NodeContext:
         self.rank = rank
         self.size = size
         self.leader_rank = None
+        self.old_leader = None
         self.last_heartbeat = time.time()
         self.stop_event = threading.Event()
         self.lock = threading.Lock()
@@ -17,6 +18,11 @@ class NodeContext:
         self.start_time = time.time()
         self.last_internet_tick = time.time()
         self.recovering = False
+
+        if self.rank == 0:
+            self.has_dataset_completed = True
+        else: self.has_dataset_completed = False
+
         self.needs_full_sync = False
         
 
