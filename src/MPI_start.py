@@ -75,8 +75,9 @@ class MainNode:
         self.start_leader_if_self()
         
 
-        print(f'lider antigo {self.context.old_leader}')
-        print(f'lider atual {self.context.leader_rank}')
+        print(f'[Nó {self.context.rank}] Lider antigo {self.context.old_leader}')
+        print(f'[Nó {self.context.rank}] Lider atual {self.context.leader_rank}')
+        
         if self.context.old_leader == self.context.rank:
             print(f"[Nó {self.context.rank}] Reativando Thread de Worker")
             self.start_work_thread()
@@ -86,7 +87,7 @@ class MainNode:
         if self.context.rank != self.context.leader_rank:
             return
         if self.leader_thread and self.leader_thread.is_alive():
-            print(f"[Nó {self.context.rank}] ERRO CRITICO, Tentativa de ativar duas Threads Líder")
+            print(f"[Nó {self.context.rank}] Tentativa de ativar duas Threads Líder Cancelada")
             return
         
         print(f"[Nó {self.context.rank}] Ativando Thread de Líder")

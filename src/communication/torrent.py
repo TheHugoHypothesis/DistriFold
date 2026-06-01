@@ -125,7 +125,9 @@ class TorrentEngine:
                 time.sleep(0.1)
             else:
                 self.connector.isend(self.context.rank, dest=self.context.leader_rank, tag=TAG_NODE_READY)
+                
             print(f"[Worker {self.context.rank}] Dataset carregado localmente e pronto para o treino!")
+            self.context.has_dataset_completed = True
             return X_complete, y_complete
 
 

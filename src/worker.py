@@ -142,7 +142,7 @@ class WorkerWork:
 
     #TRATAMENTO DE RETORNO
     def tratar_retorno(self):
-        print('Tentando Retornar, perguntando lider atual')
+        print('Tentando Retornar, perguntando lider atual para os vizinhos')
         now = time.time()
         if now - self.last_query_time > 0.5:
             if self.next_query_rank == self.context.rank:
@@ -159,8 +159,8 @@ class WorkerWork:
                 print(f'Descobri líder, ele é {leader_reply}')
 
 
-        if self.context.leader_rank == self.context.rank:
-            print(f'Lider sou eu, usando meu contexto')
+        if self.context.leader_rank == self.context.rank and self.context.rank == 0:
+            print(f'Lider sou eu devido falta do dataset, usando meu contexto')
             self.context.recovering = False
             self.context.last_heartbeat = time.time()
             return

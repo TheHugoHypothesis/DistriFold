@@ -1,282 +1,375 @@
-[2026-06-01 13:30:59.764] [Worker 0] Iniciando e disparando eleição para descobrir líder...
-[2026-06-01 13:30:59.765] [Nó 0] Iniciando eleição...
-[2026-06-01 13:30:59.766] passei aqui ==========
-[2026-06-01 13:30:59.767] [Worker 0] Iniciando verificação do Dataset...
-[2026-06-01 13:30:59.768] [Worker 0] Pedindo metadados ao líder...
-[2026-06-01 13:31:02.314] [Nó 0] Fim da contagem de tempo. Sou o menor ativo. Novo líder eleito!
-[2026-06-01 13:31:02.315] [Nó 0] Ativando Thread de Líder
-[2026-06-01 13:31:02.317] lider antigo None
-[2026-06-01 13:31:02.318] lider atual 0
-[2026-06-01 13:31:02.318] [Líder 0] Redundância: Sincronizando contexto (epoch 0) com os backups...
-[2026-06-01 13:31:02.417] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
-[2026-06-01 13:31:02.418] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
-[2026-06-01 13:31:02.422] [Torrent Líder] Dataset particionado em 8 chunks.
-[2026-06-01 13:31:02.423] [Líder] Distribuição de dados via P2P concluída.
-[2026-06-01 13:31:02.423] [Nó 0] Entrou no loop P2P Swarm. Inventário: [True, True, True, True, True, True, True, True]
-[2026-06-01 13:31:02.423] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
-[2026-06-01 13:31:02.475] Líder detectou timeout do Nó 1 (sem ACK recente)!
-[2026-06-01 13:31:03.332] Líder recebeu ACK de 1
-[2026-06-01 13:31:03.371] [Líder 0] Redundância: Sincronizando contexto (epoch 1) com os backups...
-[2026-06-01 13:31:04.393] Líder recebeu ACK de 1
-[2026-06-01 13:31:05.454] Líder recebeu ACK de 1
-[2026-06-01 13:31:06.517] Líder recebeu ACK de 1
-[2026-06-01 13:31:07.556] Líder recebeu ACK de 1
-[2026-06-01 13:31:08.620] Líder recebeu ACK de 1
-[2026-06-01 13:31:09.635] Líder recebeu ACK de 1
-[2026-06-01 13:31:10.702] Líder recebeu ACK de 1
-[2026-06-01 13:31:11.766] Líder recebeu ACK de 1
-[2026-06-01 13:31:12.816] Líder recebeu ACK de 1
-[2026-06-01 13:31:13.875] Líder recebeu ACK de 1
-[2026-06-01 13:31:14.934] Líder recebeu ACK de 1
-[2026-06-01 13:31:17.995] Líder detectou timeout do Nó 1 (sem ACK recente)!
-[2026-06-01 13:31:23.764] [Nó 0] Voltando de queda...
-[2026-06-01 13:31:23.765] lider antigo 0
-[2026-06-01 13:31:23.765] lider atual None
-[2026-06-01 13:31:23.766] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:23.767] passei aqui ==========
-[2026-06-01 13:31:23.792] Líder detectou timeout do Nó 0 (sem ACK recente)!
-[2026-06-01 13:31:23.869] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:23.970] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.072] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.094] Voltando de queda, desativando Thread Lider
-[2026-06-01 13:31:24.173] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.287] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.390] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.492] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.593] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.694] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.796] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.897] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:24.999] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:25.100] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:25.201] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:25.302] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:25.303] Descobri líder, ele é 0
-[2026-06-01 13:31:25.304] Lider sou eu, usando meu contexto
-[2026-06-01 13:31:25.305] [Worker 0] Iniciando verificação do Dataset...
-[2026-06-01 13:31:25.305] [Worker 0] Pedindo metadados ao líder...
-[2026-06-01 13:31:25.340] [Líder 0] Redundância: Sincronizando contexto (epoch 1) com os backups...
-[2026-06-01 13:31:26.391] [Nó 0] Ativando Thread de Líder
-[2026-06-01 13:31:26.393] lider antigo 0
-[2026-06-01 13:31:26.394] lider atual 0
-[2026-06-01 13:31:26.395] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:26.396] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:31:26.493] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
-[2026-06-01 13:31:26.494] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
-[2026-06-01 13:31:26.497] [Torrent Líder] Dataset particionado em 8 chunks.
-[2026-06-01 13:31:26.498] [Líder] Distribuição de dados via P2P concluída.
-[2026-06-01 13:31:26.498] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 1...
-[2026-06-01 13:31:26.499] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
-[2026-06-01 13:31:26.500] Líder recebeu ACK de 1
-[2026-06-01 13:31:26.803] [Líder] Enviando metadados respondendo ao pedido do Nó 1
-[2026-06-01 13:31:27.309] [Nó 0] Recebi REQ de Chunk 1 do Nó 1
-[2026-06-01 13:31:27.407] Líder recebeu ACK de 1
-[2026-06-01 13:31:27.411] [Nó 0] Recebi REQ de Chunk 0 do Nó 1
-[2026-06-01 13:31:27.448] [Nó 0] ERRO CRITICO, Tentativa de ativar duas Threads Líder
-[2026-06-01 13:31:27.449] lider antigo 0
-[2026-06-01 13:31:27.450] lider atual 0
-[2026-06-01 13:31:27.452] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:27.453] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:31:27.453] [Líder 0] Redundância: Sincronizando contexto (epoch 2) com os backups...
-[2026-06-01 13:31:27.463] [Nó 0] Recebi REQ de Chunk 2 do Nó 1
-[2026-06-01 13:31:27.515] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
-[2026-06-01 13:31:27.566] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
-[2026-06-01 13:31:27.618] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
-[2026-06-01 13:31:27.670] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
-[2026-06-01 13:31:27.721] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:27.772] [Nó 0] Recebi REQ de Chunk 2 do Nó 1
-[2026-06-01 13:31:27.824] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
-[2026-06-01 13:31:27.875] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
-[2026-06-01 13:31:27.927] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
-[2026-06-01 13:31:27.979] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
-[2026-06-01 13:31:28.031] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:28.082] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
-[2026-06-01 13:31:28.133] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
-[2026-06-01 13:31:28.185] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
-[2026-06-01 13:31:28.237] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
-[2026-06-01 13:31:28.289] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:28.341] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
-[2026-06-01 13:31:28.392] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
-[2026-06-01 13:31:28.444] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
-[2026-06-01 13:31:28.467] Líder recebeu ACK de 1
-[2026-06-01 13:31:28.495] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:28.547] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
-[2026-06-01 13:31:28.599] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
-[2026-06-01 13:31:28.650] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:28.702] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
-[2026-06-01 13:31:28.754] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:28.806] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
-[2026-06-01 13:31:29.528] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:29.556] [Líder 0] Redundância: Sincronizando contexto (epoch 2) com os backups...
-[2026-06-01 13:31:29.932] pending_folds: [1, 2, 3, 4, 5, 6, 7]
-[2026-06-01 13:31:29.932] [Líder 0] Atribuiu Fold 0 para o Worker 1
-[2026-06-01 13:31:30.588] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:30.608] [Líder 0] Redundância: Sincronizando contexto (epoch 3) com os backups...
-[2026-06-01 13:31:31.638] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:32.093] [Líder 0] Sucesso! Recebido resultado do Fold 0 do Worker 1
-[2026-06-01 13:31:32.701] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:32.712] [Líder 0] Redundância: Sincronizando contexto (epoch 4) com os backups...
-[2026-06-01 13:31:32.802] pending_folds: [2, 3, 4, 5, 6, 7]
-[2026-06-01 13:31:32.803] [Líder 0] Atribuiu Fold 1 para o Worker 1
-[2026-06-01 13:31:33.760] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:33.763] [Líder 0] Redundância: Sincronizando contexto (epoch 5) com os backups...
-[2026-06-01 13:31:34.771] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:35.831] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:36.433] [Líder 0] Sucesso! Recebido resultado do Fold 1 do Worker 1
-[2026-06-01 13:31:37.371] pending_folds: [3, 4, 5, 6, 7]
-[2026-06-01 13:31:37.525] [Líder 0] Atribuiu Fold 2 para o Worker 1
-[2026-06-01 13:31:38.919] Líder detectou timeout do Nó 1 (sem ACK recente)!
-[2026-06-01 13:31:44.764] [Nó 0] Voltando de queda...
-[2026-06-01 13:31:44.765] lider antigo 0
-[2026-06-01 13:31:44.766] lider atual None
-[2026-06-01 13:31:44.766] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:44.768] passei aqui ==========
-[2026-06-01 13:31:44.869] Voltando de queda, desativando Thread Lider
-[2026-06-01 13:31:44.869] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:44.971] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.072] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.196] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.298] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.399] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.501] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.602] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.704] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.806] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:45.906] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:46.007] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:46.108] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:46.210] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:46.264] [Nó 0] Ativando Thread de Líder
-[2026-06-01 13:31:46.266] lider antigo 0
-[2026-06-01 13:31:46.266] lider atual 0
-[2026-06-01 13:31:46.267] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:46.268] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:31:46.268] [Líder 0] Redundância: Sincronizando contexto (epoch 7) com os backups...
-[2026-06-01 13:31:46.311] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:31:46.312] Lider sou eu, usando meu contexto
-[2026-06-01 13:31:46.313] [Worker 0] Iniciando verificação do Dataset...
-[2026-06-01 13:31:46.313] [Worker 0] Pedindo metadados ao líder...
-[2026-06-01 13:31:46.366] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
-[2026-06-01 13:31:46.367] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
-[2026-06-01 13:31:46.369] [Torrent Líder] Dataset particionado em 8 chunks.
-[2026-06-01 13:31:46.370] [Líder] Distribuição de dados via P2P concluída.
-[2026-06-01 13:31:46.371] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 7...
-[2026-06-01 13:31:46.372] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
-[2026-06-01 13:31:47.271] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:47.320] [Nó 0] ERRO CRITICO, Tentativa de ativar duas Threads Líder
-[2026-06-01 13:31:47.321] lider antigo 0
-[2026-06-01 13:31:47.322] lider atual 0
-[2026-06-01 13:31:47.322] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:47.324] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:31:47.324] [Líder 0] Redundância: Sincronizando contexto (epoch 8) com os backups...
-[2026-06-01 13:31:47.728] pending_folds: [4, 5, 6, 7, 2]
-[2026-06-01 13:31:47.729] [Líder 0] Atribuiu Fold 3 para o Worker 1
-[2026-06-01 13:31:48.334] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:48.376] [Nó 0] ERRO CRITICO, Tentativa de ativar duas Threads Líder
-[2026-06-01 13:31:48.377] lider antigo 0
-[2026-06-01 13:31:48.378] lider atual 0
-[2026-06-01 13:31:48.378] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:31:48.380] [Líder 0] Redundância: Sincronizando contexto (epoch 9) com os backups...
-[2026-06-01 13:31:48.380] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:31:49.394] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:50.454] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:50.555] [Líder 0] Sucesso! Recebido resultado do Fold 3 do Worker 1
-[2026-06-01 13:31:51.274] pending_folds: [5, 6, 7, 2]
-[2026-06-01 13:31:51.275] [Líder 0] Atribuiu Fold 4 para o Worker 1
-[2026-06-01 13:31:51.528] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:51.536] [Líder 0] Redundância: Sincronizando contexto (epoch 11) com os backups...
-[2026-06-01 13:31:52.588] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:53.598] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:54.132] [Líder 0] Sucesso! Recebido resultado do Fold 4 do Worker 1
-[2026-06-01 13:31:54.687] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:54.691] [Líder 0] Redundância: Sincronizando contexto (epoch 12) com os backups...
-[2026-06-01 13:31:54.839] pending_folds: [6, 7, 2]
-[2026-06-01 13:31:54.840] [Líder 0] Atribuiu Fold 5 para o Worker 1
-[2026-06-01 13:31:55.696] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:55.743] [Líder 0] Redundância: Sincronizando contexto (epoch 13) com os backups...
-[2026-06-01 13:31:56.757] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:31:57.056] [Líder 0] Sucesso! Recebido resultado do Fold 5 do Worker 1
-[2026-06-01 13:31:57.894] pending_folds: [7, 2]
-[2026-06-01 13:31:58.018] [Líder 0] Atribuiu Fold 6 para o Worker 1
-[2026-06-01 13:31:59.829] Líder detectou timeout do Nó 1 (sem ACK recente)!
-[2026-06-01 13:32:05.763] [Nó 0] Voltando de queda...
-[2026-06-01 13:32:05.764] lider antigo 0
-[2026-06-01 13:32:05.765] lider atual None
-[2026-06-01 13:32:05.766] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:32:05.767] passei aqui ==========
-[2026-06-01 13:32:05.869] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:05.970] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.071] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.173] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.232] Voltando de queda, desativando Thread Lider
-[2026-06-01 13:32:06.274] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.395] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.500] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.601] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.702] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.804] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:06.905] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:07.006] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:07.108] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:07.166] [Nó 0] Ativando Thread de Líder
-[2026-06-01 13:32:07.167] lider antigo 0
-[2026-06-01 13:32:07.168] lider atual 0
-[2026-06-01 13:32:07.169] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:32:07.170] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:32:07.170] [Líder 0] Redundância: Sincronizando contexto (epoch 15) com os backups...
-[2026-06-01 13:32:07.209] Tentando Retornar, perguntando lider atual
-[2026-06-01 13:32:07.210] Lider sou eu, usando meu contexto
-[2026-06-01 13:32:07.210] [Worker 0] Iniciando verificação do Dataset...
-[2026-06-01 13:32:07.211] [Worker 0] Pedindo metadados ao líder...
-[2026-06-01 13:32:07.268] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
-[2026-06-01 13:32:07.268] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
-[2026-06-01 13:32:07.271] [Torrent Líder] Dataset particionado em 8 chunks.
-[2026-06-01 13:32:07.271] [Líder] Distribuição de dados via P2P concluída.
-[2026-06-01 13:32:07.272] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 15...
-[2026-06-01 13:32:07.273] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
-[2026-06-01 13:32:08.185] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:08.223] [Nó 0] ERRO CRITICO, Tentativa de ativar duas Threads Líder
-[2026-06-01 13:32:08.224] lider antigo 0
-[2026-06-01 13:32:08.224] lider atual 0
-[2026-06-01 13:32:08.225] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:32:08.226] [Líder 0] Redundância: Sincronizando contexto (epoch 16) com os backups...
-[2026-06-01 13:32:08.590] pending_folds: [2, 6]
-[2026-06-01 13:32:08.591] [Líder 0] Atribuiu Fold 7 para o Worker 1
-[2026-06-01 13:32:09.245] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:09.279] [Nó 0] ERRO CRITICO, Tentativa de ativar duas Threads Líder
-[2026-06-01 13:32:09.280] lider antigo 0
-[2026-06-01 13:32:09.281] lider atual 0
-[2026-06-01 13:32:09.282] [Nó 0] Reativando Thread de Worker
-[2026-06-01 13:32:09.283] [Nó 0] Sou o Líder, ignorando papel de Worker.
-[2026-06-01 13:32:09.283] [Líder 0] Redundância: Sincronizando contexto (epoch 17) com os backups...
-[2026-06-01 13:32:10.305] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:11.365] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:11.416] [Líder 0] Sucesso! Recebido resultado do Fold 7 do Worker 1
-[2026-06-01 13:32:12.123] pending_folds: [6]
-[2026-06-01 13:32:12.123] [Líder 0] Atribuiu Fold 2 para o Worker 1
-[2026-06-01 13:32:12.426] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:12.438] [Líder 0] Redundância: Sincronizando contexto (epoch 19) com os backups...
-[2026-06-01 13:32:13.472] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:14.532] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:14.988] [Líder 0] Sucesso! Recebido resultado do Fold 2 do Worker 1
-[2026-06-01 13:32:15.545] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:15.592] [Líder 0] Redundância: Sincronizando contexto (epoch 20) com os backups...
-[2026-06-01 13:32:15.697] pending_folds: []
-[2026-06-01 13:32:15.698] [Líder 0] Atribuiu Fold 6 para o Worker 1
-[2026-06-01 13:32:16.620] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:16.644] [Líder 0] Redundância: Sincronizando contexto (epoch 21) com os backups...
-[2026-06-01 13:32:17.682] Líder recebeu ACK-Pronto do Nó 1
-[2026-06-01 13:32:17.834] [Líder 0] Sucesso! Recebido resultado do Fold 6 do Worker 1
-[2026-06-01 13:32:18.543] Final:
-[2026-06-01 13:32:18.544] Fold 0: Acurácia = 0.9861 | F1-Score = 0.9860 | Loss = 0.2252
-[2026-06-01 13:32:18.545] Fold 1: Acurácia = 0.9859 | F1-Score = 0.9859 | Loss = 0.0769
-[2026-06-01 13:32:18.545] Fold 2: Acurácia = 0.9718 | F1-Score = 0.9722 | Loss = 0.1111
-[2026-06-01 13:32:18.546] Fold 3: Acurácia = 0.9859 | F1-Score = 0.9858 | Loss = 0.1236
-[2026-06-01 13:32:18.547] Fold 4: Acurácia = 0.9577 | F1-Score = 0.9574 | Loss = 0.2787
-[2026-06-01 13:32:18.548] Fold 5: Acurácia = 0.9859 | F1-Score = 0.9858 | Loss = 0.2815
-[2026-06-01 13:32:18.548] Fold 6: Acurácia = 0.9155 | F1-Score = 0.9152 | Loss = 0.3028
-[2026-06-01 13:32:18.549] Fold 7: Acurácia = 0.9577 | F1-Score = 0.9575 | Loss = 0.1246
-[2026-06-01 13:32:18.550] Acurácia Média : 0.9683 ± 0.0231
-[2026-06-01 13:32:18.551] F1-Score Médio : 0.9682 ± 0.0232
-[2026-06-01 13:32:18.551] Loss Média     : 0.1905 ± 0.0851
-[2026-06-01 13:32:18.552] [Líder] Enviando sinal de encerramento para os workers...
+[2026-06-01 13:59:11.045] [Worker 0] Iniciando e disparando eleição para descobrir líder...
+[2026-06-01 13:59:11.046] [Nó 0] Iniciando eleição...
+[2026-06-01 13:59:11.047] passei aqui ==========
+[2026-06-01 13:59:11.048] [Worker 0] Iniciando verificação do Dataset...
+[2026-06-01 13:59:11.049] [Worker 0] Pedindo metadados ao líder...
+[2026-06-01 13:59:13.566] [Nó 0] Fim da contagem de tempo. Sou o menor ativo. Novo líder eleito!
+[2026-06-01 13:59:13.567] [Nó 0] Ativando Thread de Líder
+[2026-06-01 13:59:13.568] [Nó 0] Lider antigo None
+[2026-06-01 13:59:13.570] [Nó 0] Lider atual 0
+[2026-06-01 13:59:13.570] [Líder 0] Redundância: Sincronizando contexto (epoch 0) com os backups...
+[2026-06-01 13:59:13.668] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
+[2026-06-01 13:59:13.679] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
+[2026-06-01 13:59:13.682] [Torrent Líder] Dataset particionado em 8 chunks.
+[2026-06-01 13:59:13.684] [Líder] Distribuição de dados via P2P concluída.
+[2026-06-01 13:59:13.684] [Nó 0] Entrou no loop P2P Swarm. Inventário: [True, True, True, True, True, True, True, True]
+[2026-06-01 13:59:13.684] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
+[2026-06-01 13:59:13.735] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-06-01 13:59:14.600] Líder recebeu ACK de 1
+[2026-06-01 13:59:14.622] [Líder 0] Redundância: Sincronizando contexto (epoch 1) com os backups...
+[2026-06-01 13:59:15.662] Líder recebeu ACK de 1
+[2026-06-01 13:59:16.723] Líder recebeu ACK de 1
+[2026-06-01 13:59:17.733] Líder recebeu ACK de 1
+[2026-06-01 13:59:18.796] Líder recebeu ACK de 1
+[2026-06-01 13:59:19.879] Líder recebeu ACK de 1
+[2026-06-01 13:59:20.889] Líder recebeu ACK de 1
+[2026-06-01 13:59:21.947] Líder recebeu ACK de 1
+[2026-06-01 13:59:23.007] Líder recebeu ACK de 1
+[2026-06-01 13:59:24.066] Líder recebeu ACK de 1
+[2026-06-01 13:59:25.124] Líder recebeu ACK de 1
+[2026-06-01 13:59:26.184] Líder recebeu ACK de 1
+[2026-06-01 13:59:29.242] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-06-01 13:59:35.046] [Nó 0] Voltando de queda...
+[2026-06-01 13:59:35.046] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:35.047] [Nó 0] Lider atual None
+[2026-06-01 13:59:35.048] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:35.049] passei aqui ==========
+[2026-06-01 13:59:35.069] Líder detectou timeout do Nó 0 (sem ACK recente)!
+[2026-06-01 13:59:35.151] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.171] Voltando de queda, desativando Thread Lider
+[2026-06-01 13:59:35.252] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.353] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.454] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.556] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.657] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.759] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.859] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:35.961] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.063] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.164] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.266] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.382] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.484] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.536] [Nó 0] Ativando Thread de Líder
+[2026-06-01 13:59:36.537] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:36.538] [Nó 0] Lider atual 0
+[2026-06-01 13:59:36.539] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:36.540] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 13:59:36.540] [Líder 0] Redundância: Sincronizando contexto (epoch 1) com os backups...
+[2026-06-01 13:59:36.585] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:36.586] Lider sou eu devido falta do dataset, usando meu contexto
+[2026-06-01 13:59:36.586] [Worker 0] Iniciando verificação do Dataset...
+[2026-06-01 13:59:36.587] [Worker 0] Pedindo metadados ao líder...
+[2026-06-01 13:59:36.638] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
+[2026-06-01 13:59:36.638] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
+[2026-06-01 13:59:36.641] [Torrent Líder] Dataset particionado em 8 chunks.
+[2026-06-01 13:59:36.641] [Líder] Distribuição de dados via P2P concluída.
+[2026-06-01 13:59:36.642] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 1...
+[2026-06-01 13:59:36.643] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
+[2026-06-01 13:59:37.120] [Líder] Enviando metadados respondendo ao pedido do Nó 1
+[2026-06-01 13:59:37.551] Líder recebeu ACK de 1
+[2026-06-01 13:59:37.593] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 13:59:37.594] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:37.595] [Nó 0] Lider atual 0
+[2026-06-01 13:59:37.596] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:37.597] [Líder 0] Redundância: Sincronizando contexto (epoch 2) com os backups...
+[2026-06-01 13:59:37.598] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 13:59:37.625] [Nó 0] Recebi REQ de Chunk 1 do Nó 1
+[2026-06-01 13:59:37.777] [Nó 0] Recebi REQ de Chunk 0 do Nó 1
+[2026-06-01 13:59:37.829] [Nó 0] Recebi REQ de Chunk 2 do Nó 1
+[2026-06-01 13:59:37.881] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
+[2026-06-01 13:59:37.932] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
+[2026-06-01 13:59:37.984] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
+[2026-06-01 13:59:38.035] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:38.087] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:38.138] [Nó 0] Recebi REQ de Chunk 0 do Nó 1
+[2026-06-01 13:59:38.190] [Nó 0] Recebi REQ de Chunk 2 do Nó 1
+[2026-06-01 13:59:38.241] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
+[2026-06-01 13:59:38.292] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
+[2026-06-01 13:59:38.344] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
+[2026-06-01 13:59:38.396] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:38.448] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:38.499] [Nó 0] Recebi REQ de Chunk 2 do Nó 1
+[2026-06-01 13:59:38.551] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
+[2026-06-01 13:59:38.604] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
+[2026-06-01 13:59:38.612] Líder recebeu ACK de 1
+[2026-06-01 13:59:38.649] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 13:59:38.650] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:38.650] [Nó 0] Lider atual 0
+[2026-06-01 13:59:38.651] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:38.652] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 13:59:38.655] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
+[2026-06-01 13:59:38.706] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:38.758] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:38.809] [Nó 0] Recebi REQ de Chunk 3 do Nó 1
+[2026-06-01 13:59:38.861] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
+[2026-06-01 13:59:38.914] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
+[2026-06-01 13:59:38.966] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:39.018] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:39.069] [Nó 0] Recebi REQ de Chunk 4 do Nó 1
+[2026-06-01 13:59:39.121] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
+[2026-06-01 13:59:39.172] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:39.224] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:39.276] [Nó 0] Recebi REQ de Chunk 5 do Nó 1
+[2026-06-01 13:59:39.328] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:39.379] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:39.430] [Nó 0] Recebi REQ de Chunk 6 do Nó 1
+[2026-06-01 13:59:39.482] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:39.533] [Nó 0] Recebi REQ de Chunk 7 do Nó 1
+[2026-06-01 13:59:39.673] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:39.703] [Líder 0] Redundância: Sincronizando contexto (epoch 2) com os backups...
+[2026-06-01 13:59:40.078] pending_folds: [1, 2, 3, 4, 5, 6, 7]
+[2026-06-01 13:59:40.079] [Líder 0] Atribuiu Fold 0 para o Worker 1
+[2026-06-01 13:59:40.736] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:40.754] [Líder 0] Redundância: Sincronizando contexto (epoch 3) com os backups...
+[2026-06-01 13:59:41.797] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:42.205] [Líder 0] Sucesso! Recebido resultado do Fold 0 do Worker 1
+[2026-06-01 13:59:42.810] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:42.857] [Líder 0] Redundância: Sincronizando contexto (epoch 4) com os backups...
+[2026-06-01 13:59:42.913] pending_folds: [2, 3, 4, 5, 6, 7]
+[2026-06-01 13:59:42.913] [Líder 0] Atribuiu Fold 1 para o Worker 1
+[2026-06-01 13:59:43.871] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:43.909] [Líder 0] Redundância: Sincronizando contexto (epoch 5) com os backups...
+[2026-06-01 13:59:44.929] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:45.991] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:46.446] [Líder 0] Sucesso! Recebido resultado do Fold 1 do Worker 1
+[2026-06-01 13:59:47.051] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:47.241] pending_folds: [3, 4, 5, 6, 7]
+[2026-06-01 13:59:47.364] [Líder 0] Atribuiu Fold 2 para o Worker 1
+[2026-06-01 13:59:50.158] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-06-01 13:59:56.046] [Nó 0] Voltando de queda...
+[2026-06-01 13:59:56.046] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:56.047] [Nó 0] Lider atual None
+[2026-06-01 13:59:56.048] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:56.049] passei aqui ==========
+[2026-06-01 13:59:56.150] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.209] Voltando de queda, desativando Thread Lider
+[2026-06-01 13:59:56.251] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.352] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.453] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.555] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.657] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.758] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.859] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:56.960] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:57.061] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:57.190] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:57.291] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:57.392] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:57.493] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 13:59:57.494] Descobri líder, ele é 0
+[2026-06-01 13:59:57.495] Lider sou eu devido falta do dataset, usando meu contexto
+[2026-06-01 13:59:57.496] [Worker 0] Iniciando verificação do Dataset...
+[2026-06-01 13:59:57.496] [Worker 0] Pedindo metadados ao líder...
+[2026-06-01 13:59:57.509] [Líder 0] Redundância: Sincronizando contexto (epoch 7) com os backups...
+[2026-06-01 13:59:58.560] [Nó 0] Ativando Thread de Líder
+[2026-06-01 13:59:58.562] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:58.562] [Nó 0] Lider atual 0
+[2026-06-01 13:59:58.563] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:58.564] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 13:59:58.662] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
+[2026-06-01 13:59:58.663] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
+[2026-06-01 13:59:58.664] [Torrent Líder] Dataset particionado em 8 chunks.
+[2026-06-01 13:59:58.665] [Líder] Distribuição de dados via P2P concluída.
+[2026-06-01 13:59:58.666] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 7...
+[2026-06-01 13:59:58.666] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
+[2026-06-01 13:59:58.667] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:59.274] pending_folds: [4, 5, 6, 7, 2]
+[2026-06-01 13:59:59.275] [Líder 0] Atribuiu Fold 3 para o Worker 1
+[2026-06-01 13:59:59.580] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 13:59:59.616] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 13:59:59.617] [Nó 0] Lider antigo 0
+[2026-06-01 13:59:59.618] [Nó 0] Lider atual 0
+[2026-06-01 13:59:59.618] [Nó 0] Reativando Thread de Worker
+[2026-06-01 13:59:59.619] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 13:59:59.620] [Líder 0] Redundância: Sincronizando contexto (epoch 9) com os backups...
+[2026-06-01 14:00:00.641] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:00.693] [Líder 0] Sucesso! Recebido resultado do Fold 3 do Worker 1
+[2026-06-01 14:00:01.399] pending_folds: [5, 6, 7, 2]
+[2026-06-01 14:00:01.400] [Líder 0] Atribuiu Fold 4 para o Worker 1
+[2026-06-01 14:00:01.703] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:01.724] [Líder 0] Redundância: Sincronizando contexto (epoch 11) com os backups...
+[2026-06-01 14:00:02.764] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:03.825] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:04.247] [Líder 0] Sucesso! Recebido resultado do Fold 4 do Worker 1
+[2026-06-01 14:00:04.856] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:04.878] [Líder 0] Redundância: Sincronizando contexto (epoch 12) com os backups...
+[2026-06-01 14:00:04.958] pending_folds: [6, 7, 2]
+[2026-06-01 14:00:04.959] [Líder 0] Atribuiu Fold 5 para o Worker 1
+[2026-06-01 14:00:05.919] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:05.930] [Líder 0] Redundância: Sincronizando contexto (epoch 13) com os backups...
+[2026-06-01 14:00:06.980] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:07.990] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:08.496] [Líder 0] Sucesso! Recebido resultado do Fold 5 do Worker 1
+[2026-06-01 14:00:09.052] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:09.304] pending_folds: [7, 2]
+[2026-06-01 14:00:09.428] [Líder 0] Atribuiu Fold 6 para o Worker 1
+[2026-06-01 14:00:12.154] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-06-01 14:00:17.045] [Nó 0] Voltando de queda...
+[2026-06-01 14:00:17.046] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:17.047] [Nó 0] Lider atual None
+[2026-06-01 14:00:17.048] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:17.050] passei aqui ==========
+[2026-06-01 14:00:17.152] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.253] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.354] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.456] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.516] Voltando de queda, desativando Thread Lider
+[2026-06-01 14:00:17.557] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.658] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.760] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.862] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:17.963] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.065] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.183] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.285] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.387] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.489] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.590] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.691] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.792] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.893] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:18.994] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:19.095] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:19.196] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:19.297] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:19.398] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:19.399] Descobri líder, ele é 0
+[2026-06-01 14:00:19.400] Lider sou eu devido falta do dataset, usando meu contexto
+[2026-06-01 14:00:19.400] [Worker 0] Iniciando verificação do Dataset...
+[2026-06-01 14:00:19.401] [Worker 0] Pedindo metadados ao líder...
+[2026-06-01 14:00:19.447] [Líder 0] Redundância: Sincronizando contexto (epoch 15) com os backups...
+[2026-06-01 14:00:20.499] [Nó 0] Ativando Thread de Líder
+[2026-06-01 14:00:20.500] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:20.501] [Nó 0] Lider atual 0
+[2026-06-01 14:00:20.501] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:20.503] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:20.601] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
+[2026-06-01 14:00:20.602] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
+[2026-06-01 14:00:20.604] [Torrent Líder] Dataset particionado em 8 chunks.
+[2026-06-01 14:00:20.605] [Líder] Distribuição de dados via P2P concluída.
+[2026-06-01 14:00:20.605] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 15...
+[2026-06-01 14:00:20.606] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
+[2026-06-01 14:00:20.607] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:21.213] pending_folds: [2, 6]
+[2026-06-01 14:00:21.214] [Líder 0] Atribuiu Fold 7 para o Worker 1
+[2026-06-01 14:00:21.518] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:21.554] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:21.555] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:21.556] [Nó 0] Lider atual 0
+[2026-06-01 14:00:21.557] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:21.558] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:21.558] [Líder 0] Redundância: Sincronizando contexto (epoch 17) com os backups...
+[2026-06-01 14:00:22.580] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:22.610] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:22.611] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:22.612] [Nó 0] Lider atual 0
+[2026-06-01 14:00:22.613] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:22.615] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:23.641] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:23.667] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:23.667] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:23.668] [Nó 0] Lider atual 0
+[2026-06-01 14:00:23.669] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:23.671] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:24.045] [Líder 0] Sucesso! Recebido resultado do Fold 7 do Worker 1
+[2026-06-01 14:00:24.713] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:24.722] [Líder 0] Redundância: Sincronizando contexto (epoch 18) com os backups...
+[2026-06-01 14:00:24.765] pending_folds: [6]
+[2026-06-01 14:00:24.766] [Líder 0] Atribuiu Fold 2 para o Worker 1
+[2026-06-01 14:00:25.772] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:25.774] [Líder 0] Redundância: Sincronizando contexto (epoch 19) com os backups...
+[2026-06-01 14:00:26.782] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:27.843] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:28.902] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:29.005] [Líder 0] Sucesso! Recebido resultado do Fold 2 do Worker 1
+[2026-06-01 14:00:29.712] pending_folds: []
+[2026-06-01 14:00:29.712] [Líder 0] Atribuiu Fold 6 para o Worker 1
+[2026-06-01 14:00:29.965] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:33.026] Líder detectou timeout do Nó 1 (sem ACK recente)!
+[2026-06-01 14:00:38.045] [Nó 0] Voltando de queda...
+[2026-06-01 14:00:38.046] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:38.047] [Nó 0] Lider atual None
+[2026-06-01 14:00:38.047] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:38.048] passei aqui ==========
+[2026-06-01 14:00:38.150] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.251] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.352] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.453] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.470] Voltando de queda, desativando Thread Lider
+[2026-06-01 14:00:38.555] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.655] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.756] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.858] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:38.959] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.060] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.161] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.265] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.367] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.468] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.569] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.670] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.772] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.873] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:39.975] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:40.076] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:40.178] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:40.279] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:40.337] [Nó 0] Ativando Thread de Líder
+[2026-06-01 14:00:40.338] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:40.339] [Nó 0] Lider atual 0
+[2026-06-01 14:00:40.339] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:40.340] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:40.340] [Líder 0] Redundância: Sincronizando contexto (epoch 21) com os backups...
+[2026-06-01 14:00:40.380] Tentando Retornar, perguntando lider atual para os vizinhos
+[2026-06-01 14:00:40.381] Lider sou eu devido falta do dataset, usando meu contexto
+[2026-06-01 14:00:40.382] [Worker 0] Iniciando verificação do Dataset...
+[2026-06-01 14:00:40.383] [Worker 0] Pedindo metadados ao líder...
+[2026-06-01 14:00:40.439] [Líder Rank 0] Iniciando Fase de Torrenting P2P...
+[2026-06-01 14:00:40.439] [Worker 0] Dataset 'breast_cancer' encontrado localmente! Carregando de D:\Higor Freitas\Usp\DistriFold\src\Locals\Rank 0\breast_cancer.npz
+[2026-06-01 14:00:40.441] [Torrent Líder] Dataset particionado em 8 chunks.
+[2026-06-01 14:00:40.442] [Líder] Distribuição de dados via P2P concluída.
+[2026-06-01 14:00:40.442] [Novo Líder Recuperado Rank 0] Retomando a partir da epoch 21...
+[2026-06-01 14:00:40.443] [Líder 0] Iniciando agendamento dinâmico dos 8 Folds...
+[2026-06-01 14:00:41.349] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:41.392] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:41.393] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:41.394] [Nó 0] Lider atual 0
+[2026-06-01 14:00:41.394] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:41.395] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:41.396] [Líder 0] Redundância: Sincronizando contexto (epoch 22) com os backups...
+[2026-06-01 14:00:41.753] pending_folds: []
+[2026-06-01 14:00:41.754] [Líder 0] Atribuiu Fold 6 para o Worker 1
+[2026-06-01 14:00:42.410] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:42.447] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:42.448] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:42.449] [Nó 0] Lider atual 0
+[2026-06-01 14:00:42.449] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:42.450] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:42.450] [Líder 0] Redundância: Sincronizando contexto (epoch 23) com os backups...
+[2026-06-01 14:00:43.472] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:43.504] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:43.504] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:43.505] [Nó 0] Lider atual 0
+[2026-06-01 14:00:43.506] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:43.507] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:44.532] Líder recebeu ACK-Pronto do Nó 1
+[2026-06-01 14:00:44.559] [Nó 0] Tentativa de ativar duas Threads Líder Cancelada
+[2026-06-01 14:00:44.560] [Nó 0] Lider antigo 0
+[2026-06-01 14:00:44.560] [Nó 0] Lider atual 0
+[2026-06-01 14:00:44.561] [Nó 0] Reativando Thread de Worker
+[2026-06-01 14:00:44.562] [Nó 0] Sou o Líder, ignorando papel de Worker.
+[2026-06-01 14:00:44.584] [Líder 0] Sucesso! Recebido resultado do Fold 6 do Worker 1
+[2026-06-01 14:00:45.297] Final:
+[2026-06-01 14:00:45.297] Fold 0: Acurácia = 0.9722 | F1-Score = 0.9719 | Loss = 0.3146
+[2026-06-01 14:00:45.298] Fold 1: Acurácia = 0.9718 | F1-Score = 0.9718 | Loss = 0.1461
+[2026-06-01 14:00:45.299] Fold 2: Acurácia = 0.9859 | F1-Score = 0.9860 | Loss = 0.0890
+[2026-06-01 14:00:45.300] Fold 3: Acurácia = 0.9437 | F1-Score = 0.9437 | Loss = 0.1596
+[2026-06-01 14:00:45.301] Fold 4: Acurácia = 0.9437 | F1-Score = 0.9434 | Loss = 0.2126
+[2026-06-01 14:00:45.301] Fold 5: Acurácia = 0.9859 | F1-Score = 0.9858 | Loss = 0.0831
+[2026-06-01 14:00:45.302] Fold 6: Acurácia = 0.9437 | F1-Score = 0.9436 | Loss = 0.1929
+[2026-06-01 14:00:45.303] Fold 7: Acurácia = 0.9718 | F1-Score = 0.9718 | Loss = 0.1436
+[2026-06-01 14:00:45.304] Acurácia Média : 0.9648 ± 0.0173
+[2026-06-01 14:00:45.305] F1-Score Médio : 0.9648 ± 0.0173
+[2026-06-01 14:00:45.306] Loss Média     : 0.1677 ± 0.0696
+[2026-06-01 14:00:45.306] [Líder] Enviando sinal de encerramento para os workers...
