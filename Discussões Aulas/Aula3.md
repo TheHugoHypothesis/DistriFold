@@ -22,6 +22,7 @@ Para garantir que o sistema suporte a entrada/saída dinâmica de nós e a recup
 
 ### **Uso de Threads**
 - **Nos Seguidores:** **Não** se recomenda a criação de threads manuais no nível da aplicação para o treinamento concorrente de múltiplos folds. Como bibliotecas de IA (PyTorch/TensorFlow) já utilizam threads internas otimizadas (BLAS/MKL), cada nó deve processar **um único fold por vez** para evitar a contenção de CPU e degradação de performance.
+- **Nos Seguidores:** **Não** se recomenda a criação de threads manuais no nível da aplicação para o treinamento concorrente de múltiplos folds. Como bibliotecas de IA (PyTorch/TensorFlow) já utilizam threads internas otimizadas (BLAS/MKL), cada nó deve processar **um único fold por vez** para evitar a contenção de CPU e degradação de performance.
 
 - **No Líder:** O uso de threads é viável para gerenciar o **Watchdog (Monitor de Timeout)** e a escuta de mensagens de rede sem bloquear a lógica principal de controle.
 ### **Servidores Stateful vs. Stateless**
