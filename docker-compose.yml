@@ -1,0 +1,40 @@
+# ============================================================
+# DistriFold — Docker Compose
+# ============================================================
+# Uso:
+#   docker compose up --build              # Roda com 2 nós (padrão)
+#   docker compose up --build -e NUM_NODES=4  # Roda com 4 nós
+#   NUM_NODES=4 docker compose up --build  # Alternativa para 4 nós
+# ============================================================
+
+services:
+  distrifold:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: distrifold
+    environment:
+      - NUM_NODES=${NUM_NODES:-2}
+    volumes:
+      # Persiste os logs e dados locais gerados por cada nó
+      - ./output:/app/src/Locals
+    # Descomente para limitar recursos (opcional)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '4'
+    #       memory: 2G
+
+  # Serviço dedicado para rodar os testes
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: distrifold-tests
+    environment:
+      - NUM_NODES=${NUM_NODES:-3}
+    command: python -B tests/run_tests.py
+    volumes:
+      - ./test-output:/app/src/Locals
+    profiles:
+      - test

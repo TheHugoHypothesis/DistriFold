@@ -7,7 +7,9 @@ __pycache__/
 
 
 src/Output/
-
+output/
+test-output/
 
 .vscode/
 .idea/
+venv/

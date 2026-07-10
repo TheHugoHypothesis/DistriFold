@@ -1,0 +1,29 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Outputs (regenerados dentro do container)
+src/Locals/
+src/Output/
+output/
+test-output/
+
+# Docs
+Discussões Aulas/
+README.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

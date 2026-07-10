@@ -25,17 +25,12 @@ class CommunicationService:
     #Simula janela de quedas do nó
     def run(self):
         # eleição inicial realista
-
-        
         self.start_election()
         self.context.last_internet_tick = time.time()
 
 
         while not self.context.stop_event.is_set():
             self.tick()
-
-
-
 
     # ticka todas as funções de comunicação
     def tick(self):
@@ -45,10 +40,7 @@ class CommunicationService:
             
 
         #Dados que vem de "fora"
-        
-            
-
-        #RETORNO DE QUEDA (simulada)
+        #RETORNO DE QUEDA
         if (now - self.context.last_internet_tick > 1):
 
             time.sleep(3)
