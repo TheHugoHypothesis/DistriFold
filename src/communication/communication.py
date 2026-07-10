@@ -1,6 +1,6 @@
 import time
 import threading
-from logger import print_to_node as print
+from logger import info as print, debug, warn
 from .communication_tags import *
 from node_context import NodeContext
 from mpi4py import MPI
@@ -48,7 +48,7 @@ class CommunicationService:
 
             with self.context.lock:
                 if not self.context.recovering:
-                    print(f"[Nó {self.context.rank}] Voltando de queda...")
+                    warn(f"[Nó {self.context.rank}] Voltando de queda...")
                     self.context.recovering = True
                     self.context.old_leader = self.context.leader_rank
                     self.context.leader_rank = None
@@ -75,28 +75,12 @@ class CommunicationService:
                     self.connector.isend(leader_rank, dest=source, tag=TAG_LEADER_ANNOUNCE)
 
 
-            #TODO jogar para leader_send ou outro lugar isso
             msg_context_req = self.Poll(source=source, tag=TAG_CONTEXT_REQ)
             if msg_context_req is not None:
                 if self.context.rank == self.context.leader_rank:
                     with self.context.lock:
                         ctx_payload = dict(self.context.leader_context)
                     self.connector.isend(ctx_payload, dest=source, tag=TAG_STATE_SYNC)
-
-        # #sempre checa se alguém anunciou lider
-        # #TODO Jogar isso em outro lugar, e ver se isso é de fato necessário
-        # for source in range(self.context.size):
-        #     if source == self.context.rank:
-        #         continue
-        #     msg_announce = self.Poll(source=source, tag=TAG_LEADER_ANNOUNCE)
-        #     if msg_announce is not None:
-        #         with self.context.lock:
-        #             self.context.leader_rank = msg_announce
-        #             self.context.last_heartbeat = time.time()
-        #             self.in_election = False
-                
-        #             self.role_changer()
-        #         #return
 
 
         #sempre checa se alguém pediu eleição pra poder participar, isso tem prioridade
@@ -111,7 +95,7 @@ class CommunicationService:
                     ctx_payload = dict(self.context.leader_context)
                 self.connector.isend(ctx_payload, dest=source, tag=TAG_ELECTION_CONTEXT)
                 self.connector.isend(self.context.rank, dest=source, tag=TAG_ELECTION_RANK)
-                print(f"[Nó {self.context.rank}] Alguém, pediu eleição")
+                debug(f"[Nó {self.context.rank}] Alguém pediu eleição")
                 self.start_election()
                 #return
 
@@ -192,7 +176,7 @@ class CommunicationService:
 
                 if msg_start:
                     if not self.context.has_dataset_completed:
-                        print(f"[Nó {self.context.rank}] Não tenho dataset, não vou me candidatar")
+                        warn(f"[Nó {self.context.rank}] Não tenho dataset, não vou me candidatar")
 
                     else:
                         with self.context.lock:
@@ -217,7 +201,7 @@ class CommunicationService:
             time.sleep(0.05)
 
         if lowest is None:
-            print(f"[Nó {self.context.rank}] Eleição falhou: nenhum candidato elegível.")
+            warn(f"[Nó {self.context.rank}] Eleição falhou: nenhum candidato elegível.")
             with self.context.lock:
                 self.in_election = False
             return
@@ -269,7 +253,7 @@ class CommunicationService:
 
         msg = self.Poll(source=leader_rank, tag=TAG_HELLO)
         if msg:
-            print(f"Worker {self.context.rank} recebeu PING do líder")
+            debug(f"Worker {self.context.rank} recebeu PING do líder")
 
             with self.context.lock:
                 is_ready = self.context.ready_to_work
@@ -293,7 +277,7 @@ class CommunicationService:
             has_leader = self.context.leader_rank is not None
             elapsed = time.time() - self.context.last_heartbeat
         if has_leader and elapsed > self.timeout_seconds:
-            print(f"Worker {self.context.rank} detectou timeout do líder!")
+            warn(f"Worker {self.context.rank} detectou timeout do líder!")
             self.start_election()
             time.sleep(0.1)
 

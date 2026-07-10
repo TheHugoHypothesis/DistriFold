@@ -1,5 +1,5 @@
 import time
-from logger import print_to_node as print
+from logger import info as print, debug, warn
 from sklearn.model_selection import KFold
 from node_context import NodeContext
 from communication.network import MPIConnector
@@ -43,7 +43,7 @@ class WorkerWork:
             return
 
         
-        print('passei aqui ==========')
+
         
         #Tratamento de reotrno
         while self.context.recovering:
@@ -61,9 +61,7 @@ class WorkerWork:
         self.context.ready_to_work = True
         print(f"[Worker {self.context.rank}] Pronto e aguardando ordens de Folds do Líder.")
 
-        
-        print('passei aqui ==========2')
-        
+
         
         
 
@@ -149,7 +147,7 @@ class WorkerWork:
 
     #TRATAMENTO DE RETORNO
     def tratar_retorno(self):
-        print(f'[Worker {self.context.rank}] Tentando Retornar')
+        debug(f'[Worker {self.context.rank}] Tentando Retornar')
         now = time.time()
         if now - self.last_query_time > 0.5:
             if self.next_query_rank == self.context.rank:
@@ -174,7 +172,7 @@ class WorkerWork:
 
 
         if self.context.leader_rank is not None:
-            print(f'[Worker {self.context.rank}] Pedindo contexto para o líder')
+            debug(f'[Worker {self.context.rank}] Pedindo contexto para o líder')
             self.comm_service.enqueue("worker", dest=self.context.leader_rank, tag=TAG_CONTEXT_REQ, payload="CTX")
             time.sleep(0.3)
             ctx_msg = self.comm_service.Poll(source=self.context.leader_rank, tag=TAG_STATE_SYNC)
@@ -190,6 +188,6 @@ class WorkerWork:
                 return
             
         else: 
-            print('Sem retorno')
+            debug(f'[Worker {self.context.rank}] Sem retorno do líder')
 
                 

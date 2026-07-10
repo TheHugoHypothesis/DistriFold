@@ -1,6 +1,6 @@
 from mpi4py import MPI
 import threading
-from logger import print_to_node as print
+from logger import info as print, error
 
 class MPIConnector:
     def __init__(self, comm):
@@ -44,7 +44,7 @@ class MPIConnector:
                         rank = self.comm.Get_rank()
                     except Exception:
                         rank = -1
-                    print(f"[MPI Debug] Rank {rank} falhou ao receber de source={source}, tag={tag}: {type(e).__name__}: {e}")
+                    error(f"[MPI] Rank {rank} falhou ao receber de source={source}, tag={tag}: {type(e).__name__}: {e}")
                     raise
         return None
     
@@ -79,7 +79,7 @@ class MPIConnector:
                         rank = self.comm.Get_rank()
                     except Exception:
                         rank = -1
-                    print(f"[MPI Debug] Rank {rank} falhou ao coletar de source={real_source}, tag={real_tag}: {type(e).__name__}: {e}")
+                    error(f"[MPI] Rank {rank} falhou ao coletar de source={real_source}, tag={real_tag}: {type(e).__name__}: {e}")
                     raise
 
         return None

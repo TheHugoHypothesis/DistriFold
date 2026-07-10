@@ -1,5 +1,5 @@
 import time
-from logger import print_to_node as print
+from logger import info as print, debug
 import numpy as np
 from node_context import NodeContext
 from .network import MPIConnector
@@ -243,7 +243,7 @@ class TorrentEngine:
                 meta_req = self.connector.check_message(source=source, tag=TAG_TORRENT_META_REQ)
                 if meta_req is not None:
                     if self.context.rank == self.context.leader_rank and self.dataset_id is not None:
-                        print(f"[Líder] Enviando metadados respondendo ao pedido do Nó {source}")
+                        debug(f"[Líder] Enviando metadados respondendo ao pedido do Nó {source}")
                         meta = {"total_chunks": self.total_chunks, "dataset_id": self.dataset_id}
                         self.connector.isend(meta, dest=source, tag=TAG_TORRENT_META)
 
@@ -256,14 +256,14 @@ class TorrentEngine:
                     #Solicita caso apareceu chunk que precisa
                     for chunk_id, exists in enumerate(peer_have):
                         if exists and not self.have[chunk_id]:
-                            print(f"[Nó {self.context.rank}] Solicitando Chunk {chunk_id} do Nó {source}")
+                            debug(f"[Nó {self.context.rank}] Solicitando Chunk {chunk_id} do Nó {source}")
                             self.connector.isend(chunk_id, dest=source, tag=TAG_TORRENT_REQ)
 
 
                 #Request de um Chunk meu
                 requested_chunk = self.connector.check_message(source=source, tag=TAG_TORRENT_REQ)
                 if requested_chunk is not None:
-                    print(f"[Nó {self.context.rank}] Recebi REQ de Chunk {requested_chunk} do Nó {source}")
+                    debug(f"[Nó {self.context.rank}] Recebi REQ de Chunk {requested_chunk} do Nó {source}")
                     if self.have[requested_chunk]:
                         payload = (requested_chunk, self.chunks[requested_chunk])
 

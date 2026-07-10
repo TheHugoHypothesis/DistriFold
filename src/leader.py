@@ -1,6 +1,6 @@
 import time
 import threading
-from logger import print_to_node as print
+from logger import info as print, debug, warn
 import numpy as np
 from sklearn.model_selection import KFold
 from node_context import NodeContext
@@ -84,18 +84,12 @@ class LeaderWork:
         #loop principal
         while not self.context.stop_event.is_set():            
             if self.context.recovering:
-                print(f'Voltando de queda, desativando Thread Lider')
+                warn(f'[Líder {self.context.rank}] Voltando de queda, desativando Thread Lider')
                 return
 
             if self.context.leader_rank != self.context.rank:
                 print(f"[Nó {self.context.rank}] Não é mais líder, encerrando papel de Líder.")
                 return
-            
-            
-
-            # if not self.context._node_esta_ativo():
-            #     time.sleep(0.1)
-            #     continue
 
 
             end_time = time.time() + 0.6
@@ -109,7 +103,7 @@ class LeaderWork:
 
                     msg = self.comm_service.Poll(source=source, tag=TAG_ACK)
                     if msg is not None:
-                        print(f"Líder recebeu ACK de {source}")
+                        debug(f"Líder recebeu ACK de {source}")
                         with self.context.lock:
                             self.context.setAlive(source)
                             self.context.leader_context["last_ack"][source] = time.time()
@@ -117,7 +111,7 @@ class LeaderWork:
 
                     msg_ready = self.comm_service.Poll(source=source, tag=TAG_NODE_READY)
                     if msg_ready is not None:
-                        print(f"Líder recebeu ACK-Pronto do Nó {source}")
+                        debug(f"Líder recebeu ACK-Pronto do Nó {source}")
                         with self.context.lock:
                             self.context.setAlive(source)
                             self.context.setReady(source)
@@ -134,7 +128,7 @@ class LeaderWork:
                         last_ack = self.context.leader_context["last_ack"].get(source)
                         is_alive = source in self.context.leader_context["alive_nodes"]
                     if is_alive and (last_ack is None or (now - last_ack) > self.comm_service.timeout_seconds):
-                        print(f"Líder detectou timeout do Nó {source} (sem ACK recente)!")
+                        warn(f"Líder detectou timeout do Nó {source} (sem ACK recente)!")
                         with self.context.lock:
                             self.context.setDead(source)
 
@@ -178,7 +172,7 @@ class LeaderWork:
 
                         # Envia a tarefa (apenas o fold_id)
                         if self.comm_service:
-                            print(f'pending_folds: {pending_folds}')
+                            debug(f'pending_folds: {pending_folds}')
                             self.comm_service.enqueue("leader", dest=worker_rank, tag=TAG_TASK, payload=task)
                         
                         print(f"[Líder {self.context.rank}] Atribuiu Fold {fold_id} para o Worker {worker_rank}")
@@ -272,7 +266,7 @@ class LeaderWork:
         print(f"Loss Média     : {np.mean(losses):.4f} ± {np.std(losses):.4f}")
         
 
-        #mdnda workers encerrarem
+        #Manda workers encerrarem
         print("[Líder] Enviando sinal de encerramento para os workers...")
         for worker_rank in range(self.context.size):
             if worker_rank != self.context.leader_rank:
@@ -285,7 +279,10 @@ class LeaderWork:
                 if self.comm_service:
                     self.comm_service.enqueue("leader", dest=worker_rank, tag=TAG_TASK, payload=task)
 
-        #mata o lider
+        # Aguarda o flush dos sinais de encerramento pela thread de comunicação
+        time.sleep(2.0)
+
+        # Encerra o líder
         self.context.stop_event.set()
 
 

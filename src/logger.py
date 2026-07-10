@@ -4,49 +4,90 @@ import datetime
 from mpi4py import MPI
 
 
+# ==========================================
+# Níveis de Log
+# ==========================================
+DEBUG = 0
+INFO = 1
+WARN = 2
+ERROR = 3
+
+_LEVEL_NAMES = {DEBUG: "DEBUG", INFO: "INFO", WARN: "WARN", ERROR: "ERROR"}
+_CURRENT_LEVEL = INFO  # Padrão: mostra INFO e acima
+
 PRINT_TO_CONSOLE = True
 
 _original_print = print
 
 
-#Mudamos o print porque ele só tinha saída no final. Então exportamos para um TXT para ficar mais organizado
-def print_to_node(*args, **kwargs):
+def set_level(level):
+    """Configura o nível mínimo de log. Mensagens abaixo são descartadas."""
+    global _CURRENT_LEVEL
+    _CURRENT_LEVEL = level
+
+
+def _get_rank():
     try:
         if not MPI.Is_initialized():
-            rank = 0
-        else:
-            rank = MPI.COMM_WORLD.Get_rank()
+            return 0
+        return MPI.COMM_WORLD.Get_rank()
     except Exception:
-        rank = 0
+        return 0
 
-    
+
+def _log(level, *args, **kwargs):
+    """Motor central de logging com suporte a níveis."""
+    if level < _CURRENT_LEVEL:
+        return
+
+    rank = _get_rank()
+    level_name = _LEVEL_NAMES.get(level, "INFO")
+
     src_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(src_dir)
     output_dir = os.path.join(project_root, f"src/Locals/Rank {rank}")
     os.makedirs(output_dir, exist_ok=True)
 
-    
     now = datetime.datetime.now()
-    date_str = now.strftime("%Y-%m-%d")
     time_str = now.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
 
-    
     sep = kwargs.get("sep", " ")
     end = kwargs.get("end", "\n")
     message = sep.join(str(arg) for arg in args)
-    
-    
-    log_line = f"[{time_str}] {message}{end}"
+
+    log_line = f"[{time_str}] [{level_name}] {message}{end}"
     filename = f"{rank}.txt"
     file_path = os.path.join(output_dir, filename)
 
-    
     try:
         with open(file_path, "a", encoding="utf-8") as f:
             f.write(log_line)
     except Exception as e:
-        _original_print(f"[Erro no Logger do Nó {rank}]: Não foi possível gravar no arquivo. Detalhes: {e}", file=sys.stderr)
+        _original_print(f"[Erro no Logger do Nó {rank}]: {e}", file=sys.stderr)
 
-    
     if PRINT_TO_CONSOLE:
         _original_print(*args, **kwargs)
+
+
+# ==========================================
+# Funções públicas de log
+# ==========================================
+def debug(*args, **kwargs):
+    """Log de nível DEBUG — detalhes internos, polling, heartbeats."""
+    _log(DEBUG, *args, **kwargs)
+
+def info(*args, **kwargs):
+    """Log de nível INFO — operações normais importantes."""
+    _log(INFO, *args, **kwargs)
+
+def warn(*args, **kwargs):
+    """Log de nível WARN — falhas detectadas, timeouts, recuperações."""
+    _log(WARN, *args, **kwargs)
+
+def error(*args, **kwargs):
+    """Log de nível ERROR — erros que impedem operação normal."""
+    _log(ERROR, *args, **kwargs)
+
+
+# Backward compatibility: print_to_node mapeia para info
+print_to_node = info
