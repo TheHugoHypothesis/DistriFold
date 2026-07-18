@@ -1,3 +1,4 @@
+from sklearn.datasets import fetch_covtype
 import time
 import threading
 from logger import info as print, debug, warn
@@ -199,7 +200,7 @@ class LeaderWork:
                 leader_idle = (self._local_train_thread is None or not self._local_train_thread.is_alive())
                 
                 can_leader_train = True
-                if not self.allow_early_training:
+                if not self.allow_early_training and self.context.size > 1:
                     # Se treino precoce não for permitido, todos os workers ativos/vivos devem estar prontos (ready_nodes)
                     alive_workers = [w for w in ctx["alive_nodes"] if w != self.context.rank]
                     ready_workers = [w for w in ctx["ready_nodes"] if w != self.context.rank]
@@ -358,6 +359,18 @@ class LeaderWork:
                 print(f"[Líder {self.context.rank}] Dataset '{self.dataset_id}' salvo com sucesso em {file_path}")
             except Exception as e:
                 print(f"[Líder {self.context.rank}] Falha ao gerar dataset: {e}")
+
+        if not os.path.exists(file_path) and self.dataset_id == "covtype":
+            print(f"[Líder {self.context.rank}] Dataset '{self.dataset_id}' não encontrado localmente. Buscando remoto...")
+            try:
+                os.makedirs(local_dir, exist_ok=True)
+                from sklearn.datasets import fetch_covtype
+                data = fetch_covtype()
+                np.savez(file_path, X=data.data, y=data.target)
+                print(f"[Líder {self.context.rank}] Dataset '{self.dataset_id}' salvo com sucesso em {file_path}")
+            except Exception as e:
+                print(f"[Líder {self.context.rank}] Falha ao gerar dataset: {e}")
+
 
         if os.path.exists(file_path):
             print(f"[Worker {self.context.rank}] Dataset '{self.dataset_id}' encontrado localmente! Carregando de {file_path}")

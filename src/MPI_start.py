@@ -19,26 +19,31 @@ provided = MPI.Init_thread(MPI.THREAD_MULTIPLE)
 # Configura se o líder pode treinar folds localmente antes de todos os workers ativos estarem prontos.
 # Padrão: False (o líder aguarda os workers ativos estarem prontos antes de treinar).
 ALLOW_LEADER_EARLY_TRAINING = os.getenv("ALLOW_LEADER_EARLY_TRAINING", "False").lower() in ("true", "1", "yes")
+IS_BENCHMARK = os.getenv("DISTRIFOLD_BENCHMARK", "False").lower() in ("true", "1", "yes")
 
 DATASET_ID = "breast_cancer"
 
 CONFIG_FOLD = {
-    "n_splits":64, 
-    "shuffle":True, 
-    'random_state':42
+    "n_splits": int(os.getenv("DISTRIFOLD_N_SPLITS", "64")), 
+    "shuffle": True, 
+    'random_state': 42
 }
-
 
 CONFIG_MLP = {
-        "h1": 64, "h2": 16, "lr": 0.001,
-        "epochs": 600, "batch_size": 4
+    "h1": 64, 
+    "h2": 16, 
+    "lr": 0.001,
+    "epochs": int(os.getenv("DISTRIFOLD_EPOCHS", "600")), 
+    "batch_size": 4
 }
 
-
-TESTE_REDUNDANCIA = {
-    0: {'time_working':15 ,'time_timeout':6},
-    1: {'time_working':0 ,'time_timeout':0}
-}
+if IS_BENCHMARK:
+    TESTE_REDUNDANCIA = {}
+else:
+    TESTE_REDUNDANCIA = {
+        0: {'time_working': 15, 'time_timeout': 6},
+        1: {'time_working': 0, 'time_timeout': 0}
+    }
 
 
 
