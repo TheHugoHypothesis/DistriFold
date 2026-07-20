@@ -1,127 +1,38 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-Container-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/Podman-Compatible-892CA0?style=for-the-badge&logo=podman&logoColor=white" />
-  <img src="https://img.shields.io/badge/OpenMPI-4.x-4E9A06?style=for-the-badge&logo=openmpi&logoColor=white" />
-  <img src="https://img.shields.io/badge/mpi4py-4.1-005F9E?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/scikit--learn-1.9-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" />
-</p>
+# DistriFold
 
-<h1 align="center">⚡ DistriFold</h1>
-
-<p align="center">
-  <strong>Rede distribuída de treinamento descentralizado via K-Fold Cross-Validation com OpenMPI</strong>
-</p>
-
-<p align="center">
-  <em>Acelere a validação cruzada de modelos de IA distribuindo os K folds entre múltiplos nós MPI, com tolerância a falhas, eleição de líder e distribuição P2P de dataset.</em>
-</p>
+Rede distribuída de treinamento descentralizado via K-Fold Cross-Validation com OpenMPI.
 
 ---
 
-## 📖 Sobre o Projeto
+## Como Rodar (Passo a Passo)
 
-O **DistriFold** é uma arquitetura distribuída de alta performance para paralelização de **K-Fold Cross-Validation** em modelos de Machine Learning e Inteligência Artificial. Em vez de treinar todos os $K$ folds de maneira sequencial em uma única máquina, o sistema distribui os folds dinamicamente entre múltiplos workers em uma rede MPI.
-
-### 🌟 Destaques do Sistema
-- **Agendamento Dinâmico de Folds**: O líder atribui tarefas sob demanda para os workers disponíveis assim que eles ficam ociosos.
-- **Distribuição P2P de Dataset (Torrent)**: O dataset é fatiado em chunks e compartilhado descentralizadamente entre os nós através de um protocolo torrent próprio sobre MPI.
-- **Tolerância a Falhas & Resiliência**: Detecção ativa de falhas por heartbeat com timeout, reatribuição transparente de tarefas e re-eleição automática de líder pelo menor rank ativo com dataset.
-- **Dashboard Interativo Web**: Servidor HTTP embutido com interface em tempo real utilizando D3.js para visualizar a topologia da rede, fluxo P2P e status dos folds.
-- **Análise de Desempenho & Métricas**: Ferramentas integradas para gerar gráficos de Speedup vs. Ideal e relatórios detalhados de Eficiência Paralela ($E_N$).
+### Pré-requisitos
+- Docker e Docker Compose (Método recomendado)
+- Podman e Podman Compose (Suportado no Linux)
+- OpenMPI 4.x e Python 3.11 (Para execução local sem containers)
 
 ---
 
-## 🏗️ Arquitetura do Sistema
+### 1. Executando a Aplicação Distribuída
 
-O sistema opera sob um modelo **Líder-Seguidor** flexível sobre o runtime do OpenMPI:
+#### Método 1: Docker (Recomendado)
 
-```text
-┌─────────────────────────────────────────────────────────────────────┐
-│                        CLUSTER MPI                                  │
-│                                                                     │
-│   ┌──────────────┐     Heartbeat / Sincronização   ┌──────────────┐ │
-│   │   Nó 0       │◄──────────────────────────────► │   Nó 1       │ │
-│   │  (Líder)     │       TAG_HELLO / TAG_ACK       │  (Worker)    │ │
-│   │              │                                 │              │ │
-│   │  • Agenda    │       TAG_TASK ─────────────────►│  • Treina    │ │
-│   │    folds     │ ◄───── TAG_RESULT               │    fold      │ │
-│   │  • Coleta    │                                 │  • Retorna   │ │
-│   │    métricas  │                                 │    pesos     │ │
-│   └──────────────┘                                 └──────────────┘ │
-│                                                                     │
-│   ◄──── Torrent P2P (TAG_TORRENT_*) ──────────────────────────────►  │
-│   Distribuição descentralizada do dataset entre todos os nós        │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 📂 Estrutura do Projeto
-
-```text
-DistriFold/
-├── Dockerfile              # Imagem base (Python 3.11 + OpenMPI + dependências)
-├── docker-compose.yml      # Orquestração de serviços (App, Testes e Visualização)
-├── requirements.txt        # Dependências Python (mpi4py, numpy, scikit-learn, matplotlib)
-├── .dockerignore           # Exclusões do contexto de build
-│
-├── 📁 src/
-│   ├── MPI_start.py         #  Orquestrador principal de nós
-│   ├── leader.py            # Lógica do papel de Líder (agendamento e agregação)
-│   ├── worker.py            # Lógica do papel de Worker (download P2P e treino MLP)
-│   ├── MLP.py               # Classificador MLP
-│   ├── node_context.py      # Gerenciador de estado e contexto global do nó
-│   ├── logger.py            # Logger formatado para arquivo e console
-│   ├── clear_locals.py      # Utilitário de limpeza de estado local
-│   ├── plot_benchmark.py    # Gerador de gráficos de speedup e divisão por fases
-│   ├── analyze_metrics.py   # Analisador de eficiência paralela e overhead de rede
-│   ├── visualizer_server.py # Servidor HTTP REST/Static da interface web
-│   ├── visualizer_logger.py # Logger de eventos JSON para o visualizador
-│   ├── index.html           # Dashboard interativo em Vanilla JS + D3.js
-│   └── 📁 communication/      # Camada de rede, abstração MPI e engine torrent P2P
-│       ├── communication.py      # Serviço de heartbeat e eleição de líder
-│       ├── communication_tags.py # Definição de tags numéricas das mensagens MPI
-│       ├── network.py            # Wrapper para Send/Recv no MPI
-│       └── torrent.py            # Engine P2P
-│
-└── 📁 tests/
-    ├── run_tests.py         # 9 testes de integração distribuídos
-    ├── test_MPI_start.py    # Entry point para os testes
-    └── utils.py             # Helpers para sub-processos MPI e parsing de logs
-```
-
----
-
-## 🚀 Como Rodar (Passo a Passo)
-
-### 📋 Pré-requisitos
-- **Docker** & **Docker Compose** *(Método principal recomendado)*
-- **Podman** & **Podman Compose** *(Suportado nativamente no Linux)*
-- **OpenMPI 4.x** & **Python 3.11** *(Para execução local direta sem containers)*
-
----
-
-### 1️⃣ Executando a Aplicação Distribuída
-
-#### 🐳 Método 1: Docker (Recomendado)
-
-1. **Construir a imagem da aplicação**:
+1. Construir a imagem da aplicação:
    ```bash
    docker build -t distrifold .
    ```
 
-2. **Executar com a configuração padrão (6 nós MPI)**:
+2. Executar com a configuração padrão (6 nós MPI):
    ```bash
    docker run --rm -v $(pwd)/output:/app/src/Locals distrifold
    ```
 
-3. **Executar alterando a quantidade de nós MPI (ex: 4 nós)**:
+3. Executar alterando a quantidade de nós MPI (ex: 4 nós):
    ```bash
    docker run --rm -e NUM_NODES=4 -v $(pwd)/output:/app/src/Locals distrifold
    ```
 
-#### 🐙 Método 2: Docker Compose
+#### Método 2: Docker Compose
 
 ```bash
 # Executar a aplicação principal com build automático (6 nós)
@@ -131,7 +42,7 @@ docker compose up --build
 NUM_NODES=4 docker compose up --build
 ```
 
-#### 🦭 Método 3: Podman (Compatibilidade Linux / SELinux)
+#### Método 3: Podman (Compatibilidade Linux / SELinux)
 
 Ao utilizar o Podman no Linux, adicione a flag `--userns=keep-id` e o sufixo `:U,z` nos volumes para sincronização de permissões:
 
@@ -148,7 +59,7 @@ podman run --rm --userns=keep-id \
 NUM_NODES=4 podman compose up --build
 ```
 
-#### 💻 Método 4: Execução Local no Host (Sem Container)
+#### Método 4: Execução Local no Host (Sem Container)
 
 ```bash
 # 1. Instalar as dependências Python
@@ -163,18 +74,9 @@ mpiexec -n 4 python -B src/MPI_start.py
 
 ---
 
-### 2️⃣ Executando os Testes Automatizados
+### 2. Executando os Testes Automatizados
 
-A suíte de testes valida **9 cenários de sistemas distribuídos**:
-- 1. **Eleição de Líder**: Valida a re-eleição automática após a queda do nó principal.
-- 2. **Elegibilidade**: Garante que nós sem dataset não assumam a liderança.
-- 3. **Difusão P2P**: Confirma que todos os nós reconstroem o dataset completo via torrent.
-- 4. **Balanceamento Dinâmico**: Garante a distribuição proporcional de tarefas entre os workers.
-- 5. **Falha de Worker**: Verifica se tarefas de um worker morto retornam à fila de pendentes.
-- 6. **Falha do Líder**: Testa a recuperação do contexto global pelo novo líder.
-- 7. **Sincronização de Estado**: Confirma que todos os nós mantêm réplicas atualizadas.
-- 8. **Reintegração de Nós**: Testa se nós recuperados sincronizam estado com o líder.
-- 9. **Escalabilidade**: Avalia a redução no tempo de treino com a adição de nós.
+A suíte de testes valida 9 cenários de integração distribuída (eleição de líder, difusão torrent P2P, falhas de workers/líder, reatribuição de tarefas e escalabilidade).
 
 ```bash
 # Executar a suíte de testes via Docker Compose (Recomendado)
@@ -192,29 +94,29 @@ python tests/run_tests.py
 
 ---
 
-### 3️⃣ Visualização Web Interativa em Tempo Real
+### 3. Visualização Web Interativa em Tempo Real
 
-O sistema grava visualmente todos os pacotes trocados e o progresso dos folds num log JSONL. O servidor HTTP disponibiliza um painel gráfico em D3.js na porta **8000**.
+O servidor HTTP disponibiliza um painel gráfico em D3.js na porta 8000 para acompanhar a topologia da rede, o tráfego P2P, eleições de líder e o status dos folds.
 
-1. **Subir o servidor de visualização via Docker Compose**:
+1. Subir o servidor de visualização via Docker Compose:
    ```bash
    docker compose --profile vis up --build visualizer
    ```
    *(Ou localmente via Python: `python src/visualizer_server.py 8000`)*
 
-2. **Abrir no navegador**:
-   Acesse **[http://localhost:8000](http://localhost:8000)**
+2. Abrir no navegador:
+   Acesse http://localhost:8000
 
-3. **Acompanhar a execução**:
-   Execute a aplicação com os nós pelo terminal. O painel da web exibirá as conexões da rede, animações de transferência de pacotes P2P, alertas de eleição de líder e barras de progresso do treinamento em tempo real
+3. Acompanhar a execução:
+   Dispare uma rodada da aplicação em outro terminal para visualizar os eventos em tempo real.
 
 ---
 
-### 4️⃣ Benchmarks e Análise de Eficiência Paralela
+### 4. Benchmarks e Análise de Eficiência Paralela
 
-#### 📊 1. Gerador de Gráficos (`plot_benchmark.py`)
+#### 1. Gerador de Gráficos (plot_benchmark.py)
 
-Gera gráficos comparativos (`speedup_comparison.png` e `execution_phases_breakdown.png`).
+Gera gráficos comparativos (`speedup_comparison.png` e `execution_phases_breakdown.png`) com fundo transparente.
 
 ```bash
 # Modo Rápido (Gera os gráficos a partir dos dados do último teste ou dados históricos)
@@ -227,9 +129,9 @@ docker run --rm \
   distrifold python src/plot_benchmark.py --run
 ```
 
-#### 📈 2. Analisador de Métricas Textual (`analyze_metrics.py`)
+#### 2. Analisador de Métricas Textual (analyze_metrics.py)
 
-Gera um relatório detalhado no console calculando a **Eficiência Paralela ($E_N$)** e a porcentagem gasta com **Overhead de Comunicação**:
+Gera um relatório detalhado no console calculando a Eficiência Paralela e a porcentagem gasta com Overhead de Comunicação:
 
 ```bash
 python src/analyze_metrics.py
@@ -237,11 +139,11 @@ python src/analyze_metrics.py
 
 ---
 
-## ⚙️ Como Alterar Configurações
+## Como Alterar Configurações
 
-O comportamento do sistema pode ser customizado via **variáveis de ambiente** ou editando `src/MPI_start.py`.
+O comportamento do sistema pode ser customizado via variáveis de ambiente ou editando `src/MPI_start.py`.
 
-### 🛠️ Variáveis de Ambiente Suportadas
+### Variáveis de Ambiente Suportadas
 
 | Variável | Padrão | Descrição |
 |----------|--------|-----------|
@@ -249,8 +151,9 @@ O comportamento do sistema pode ser customizado via **variáveis de ambiente** o
 | `DISTRIFOLD_N_SPLITS` | `64` | Quantidade de folds na divisão do K-Fold Cross Validation |
 | `DISTRIFOLD_EPOCHS` | `600` | Número máximo de épocas de treinamento da MLP por fold |
 | `ALLOW_LEADER_EARLY_TRAINING` | `False` | Se `True`, o líder treina localmente sem esperar que os workers fiquem prontos |
+| `DISTRIFOLD_BENCHMARK` | `False` | Se `True`, desativa a injeção simulada de falhas para medições puras de performance |
 
-### 💡 Exemplos de Execução com Parâmetros Customizados
+### Exemplos de Execução com Parâmetros Customizados
 
 ```bash
 # Executar com 128 Folds e 400 Épocas via Docker
@@ -267,35 +170,3 @@ docker run --rm \
   -v $(pwd)/output:/app/src/Locals \
   distrifold
 ```
-
----
-
-## 🛡️ Tolerância a Falhas
-
-| Cenário | Mecanismo de Recuperação |
-|---------|--------------------------|
-| **Worker cai** | O Líder detecta timeout via heartbeat → o fold em andamento é devolvido para a fila de pendentes → outro worker assume a tarefa. |
-| **Líder cai** | Os Workers detectam timeout do Líder → iniciam eleição descentralizada → o menor rank ativo contendo o dataset é eleito novo Líder e recupera o estado global. |
-| **Nó retorna** | O nó recuperado faz broadcast perguntando pela identidade do Líder → sincroniza o contexto de execução → retoma o papel de worker. |
-
----
-
-## 🔧 Stack Tecnológica
-
-| Tecnologia | Versão | Função no Projeto |
-|-----------|--------|-------------------|
-| **Python** | 3.11 | Linguagem base da aplicação |
-| **Docker / Docker Compose** | Latest | Containerização primária e orquestração |
-| **Podman** | Latest | Runtime de containers alternativo com suporte rootless |
-| **OpenMPI** | 4.x | Runtime de comunicação paralela e mensageria de alta velocidade |
-| **mpi4py** | 4.1 | Interface Python para bindings MPI |
-| **NumPy** | 2.x | Computação matricial e implementação manual da MLP |
-| **scikit-learn** | 1.9 | Divisão do K-Fold Cross Validation e métricas de avaliação |
-| **Matplotlib** | 3.x | Visualização gráfica de benchmarks e escalabilidade |
-| **D3.js / HTML5** | Latest | Interface web interativa de monitoramento da rede |
-
----
-
-<p align="center">
-  Desenvolvido para a disciplina de <strong>Sistemas Distribuídos (DSID)</strong>
-</p>
