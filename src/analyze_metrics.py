@@ -50,17 +50,14 @@ def main():
             t_torrent = data[mode]["torrent"][i]
             t_train = data[mode]["training"][i]
             
-            # Cálculos de Speedup e Eficiência
             speedup_obtained = t1 / t_total if t_total > 0 else 0
             speedup_ideal = float(n)
             efficiency = (speedup_obtained / speedup_ideal) * 100 if speedup_ideal > 0 else 0
             
-            # Cálculos de Comunicação vs Computação
             t_comm = t_election + t_torrent
             pct_comm = (t_comm / t_total) * 100 if t_total > 0 else 0
             pct_train = (t_train / t_total) * 100 if t_total > 0 else 0
 
-            # Formatação de string
             speedup_str = f"{speedup_obtained:.2f}x"
             ideal_str = f"{speedup_ideal:.1f}x"
             efficiency_str = f"{efficiency:.1f}%"
@@ -69,18 +66,6 @@ def main():
 
             print(f"{n:<6} | {t_total:<10.2f} | {speedup_str:<12} | {ideal_str:<12} | {efficiency_str:<10} | {train_str:<16} | {comm_str:<22}")
         print("\n" + "=" * 90 + "\n")
-
-    # Análise interpretativa simplificada
-    print("ANÁLISE SINTETIZADA:")
-    print(" 1. Impacto da Eleição + Torrent (Comunicação):")
-    print("    - Em redes pequenas (1-2 nós), a computação (treino da MLP) domina a execução.")
-    print("    - À medida que adicionamos nós (ex: 4-6 nós), a comunicação passa a ocupar uma fração maior")
-    print("      do tempo total. Isso ilustra o limite da Lei de Amdahl em sistemas distribuídos.")
-    print("\n 2. Ganho com o Treinamento Precoce (Modo Otimizado):")
-    print("    - O modo otimizado reduz consideravelmente a latência inicial de torrenting do líder,")
-    print("      pois ele inicia o treinamento local imediatamente enquanto os workers realizam o P2P.")
-    print("    - Isso reflete diretamente em uma maior Eficiência Paralela na rede.")
-    print("=" * 90)
 
 if __name__ == "__main__":
     main()

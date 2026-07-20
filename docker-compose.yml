@@ -1,10 +1,14 @@
 # ============================================================
 # DistriFold — Docker Compose
 # ============================================================
-# Uso:
-#   docker compose up --build              # Roda com 2 nós (padrão)
-#   docker compose up --build -e NUM_NODES=4  # Roda com 4 nós
-#   NUM_NODES=4 docker compose up --build  # Alternativa para 4 nós
+# Uso Principal (Docker):
+#   docker compose up --build                       # Roda aplicação (6 nós por padrão)
+#   NUM_NODES=4 docker compose up --build           # Roda com 4 nós MPI
+#   docker compose --profile test up --build tests  # Roda a suíte completa de testes
+#   docker compose --profile vis up --build visualizer # Roda o servidor de visualização em http://localhost:8000
+#
+# Uso com Podman (Compatibilidade):
+#   podman compose up --build
 # ============================================================
 
 services:
@@ -15,17 +19,14 @@ services:
     container_name: distrifold
     environment:
       - NUM_NODES=${NUM_NODES:-6}
+      - DISTRIFOLD_N_SPLITS=${DISTRIFOLD_N_SPLITS:-64}
+      - DISTRIFOLD_EPOCHS=${DISTRIFOLD_EPOCHS:-600}
+      - ALLOW_LEADER_EARLY_TRAINING=${ALLOW_LEADER_EARLY_TRAINING:-False}
     volumes:
-      # Persiste os logs e dados locais gerados por cada nó
       - ./output:/app/src/Locals:z
-    # Descomente para limitar recursos (opcional)
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: '4'
-    #       memory: 2G
+      - ./benchmark_results:/app/benchmark_results:z
 
-  # Serviço dedicado para rodar os testes
+  # Serviço para a suíte de testes unitários e de integração
   tests:
     build:
       context: .
@@ -38,3 +39,18 @@ services:
       - ./test-output:/app/src/Locals:z
     profiles:
       - test
+
+  # Serviço de Visualização Web em tempo real
+  visualizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: distrifold-visualizer
+    command: python src/visualizer_server.py 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./output:/app/src/Locals:z
+    profiles:
+      - vis
+      - visualizer

@@ -4,7 +4,6 @@ import subprocess
 import time
 import sys
 
-# Caminhos base
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(TESTS_DIR)
 LOCALS_DIR = os.path.join(PROJECT_ROOT, "src", "Locals")
@@ -35,13 +34,10 @@ def clear_locals():
 
 def run_mpi(scenario_name, num_nodes=3, env_overrides=None, timeout=25):
     """Executa o script test_MPI_start.py com o cenário de testes especificado."""
-    # Garante que a limpeza foi feita
     clear_locals()
     
-    # Prepara o ambiente
     env = os.environ.copy()
     env["DISTRIFOLD_TEST"] = scenario_name
-    # Desativa buffers de stdout do python para que os prints apareçam de imediato
     env["PYTHONUNBUFFERED"] = "1"
     
     if env_overrides:
@@ -52,7 +48,6 @@ def run_mpi(scenario_name, num_nodes=3, env_overrides=None, timeout=25):
     
     print(f"\n[Test Runner] Executando: {' '.join(mpi_cmd)} (Cenário: {scenario_name})")
     
-    # Executa o comando
     proc = subprocess.Popen(
         mpi_cmd,
         cwd=PROJECT_ROOT,
@@ -62,7 +57,6 @@ def run_mpi(scenario_name, num_nodes=3, env_overrides=None, timeout=25):
         text=True
     )
     
-    # Aguarda a conclusão ou estouro de timeout
     try:
         stdout, stderr = proc.communicate(timeout=timeout)
         return proc.returncode, stdout, stderr

@@ -8,9 +8,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(
 import node_context
 import worker
 
-# ==========================================
-# 1. Monkey-Patching de NodeContext.__init__
-# ==========================================
 original_node_context_init = node_context.NodeContext.__init__
 
 def patched_node_context_init(self, rank, size, teste=None):
@@ -49,10 +46,6 @@ def patched_node_context_init(self, rank, size, teste=None):
 
 node_context.NodeContext.__init__ = patched_node_context_init
 
-# =========================================================
-# 2. Monkey-Patching de NodeContext.has_dataset_completed
-# =========================================================
-# Definimos como propriedade para interceptar leituras dinâmicas
 @property
 def has_dataset_completed_prop(self):
     no_dataset_rank = os.getenv("DISTRIFOLD_NO_DATASET_WORKER")
@@ -66,9 +59,6 @@ def has_dataset_completed_prop(self, val):
 
 node_context.NodeContext.has_dataset_completed = has_dataset_completed_prop
 
-# ========================================================
-# 3. Monkey-Patching de worker.train_fold_from_arrays
-# ========================================================
 original_train_fold_from_arrays = worker.train_fold_from_arrays
 
 def patched_train_fold_from_arrays(X, y, train_idx, test_idx, config, fold_id=None):
@@ -82,9 +72,6 @@ def patched_train_fold_from_arrays(X, y, train_idx, test_idx, config, fold_id=No
 
 worker.train_fold_from_arrays = patched_train_fold_from_arrays
 
-# ==========================================
-# 4. Importa e executa o MPI_start original
-# ==========================================
 import MPI_start
 
 if __name__ == "__main__":
