@@ -24,12 +24,11 @@
 O **DistriFold** é uma arquitetura distribuída de alta performance para paralelização de **K-Fold Cross-Validation** em modelos de Machine Learning e Inteligência Artificial. Em vez de treinar todos os $K$ folds de maneira sequencial em uma única máquina, o sistema distribui os folds dinamicamente entre múltiplos workers em uma rede MPI.
 
 ### 🌟 Destaques do Sistema
-- **⚡ Agendamento Dinâmico de Folds**: O líder atribui tarefas sob demanda para os workers disponíveis assim que eles ficam ociosos.
-- **🌊 Distribuição P2P de Dataset (Torrent)**: O dataset é fatiado em chunks e compartilhado descentralizadamente entre os nós através de um protocolo torrent próprio sobre MPI.
-- **🛡️ Tolerância a Falhas & Resiliência**: Detecção ativa de falhas por heartbeat com timeout, reatribuição transparente de tarefas e re-eleição automática de líder pelo menor rank ativo com dataset.
-- **⚡ Otimização de Treinamento Precoce**: O líder pode iniciar o treinamento de folds localmente enquanto a propagação P2P ocorre entre os demais workers.
-- **🌐 Dashboard Interativo Web**: Servidor HTTP embutido com interface em tempo real utilizando D3.js para visualizar a topologia da rede, fluxo P2P e status dos folds.
-- **📊 Análise de Desempenho & Métricas**: Ferramentas integradas para gerar gráficos de Speedup vs. Ideal e relatórios detalhados de Eficiência Paralela ($E_N$).
+- **Agendamento Dinâmico de Folds**: O líder atribui tarefas sob demanda para os workers disponíveis assim que eles ficam ociosos.
+- **Distribuição P2P de Dataset (Torrent)**: O dataset é fatiado em chunks e compartilhado descentralizadamente entre os nós através de um protocolo torrent próprio sobre MPI.
+- **Tolerância a Falhas & Resiliência**: Detecção ativa de falhas por heartbeat com timeout, reatribuição transparente de tarefas e re-eleição automática de líder pelo menor rank ativo com dataset.
+- **Dashboard Interativo Web**: Servidor HTTP embutido com interface em tempo real utilizando D3.js para visualizar a topologia da rede, fluxo P2P e status dos folds.
+- **Análise de Desempenho & Métricas**: Ferramentas integradas para gerar gráficos de Speedup vs. Ideal e relatórios detalhados de Eficiência Paralela ($E_N$).
 
 ---
 
@@ -62,34 +61,34 @@ O sistema opera sob um modelo **Líder-Seguidor** flexível sobre o runtime do O
 
 ```text
 DistriFold/
-├── 📦 Dockerfile              # Imagem base (Python 3.11 + OpenMPI + dependências)
-├── 📦 docker-compose.yml      # Orquestração de serviços (App, Testes e Visualização)
-├── 📋 requirements.txt        # Dependências Python (mpi4py, numpy, scikit-learn, matplotlib)
-├── 📋 .dockerignore            # Exclusões do contexto de build containerizado
+├── Dockerfile              # Imagem base (Python 3.11 + OpenMPI + dependências)
+├── docker-compose.yml      # Orquestração de serviços (App, Testes e Visualização)
+├── requirements.txt        # Dependências Python (mpi4py, numpy, scikit-learn, matplotlib)
+├── .dockerignore           # Exclusões do contexto de build
 │
 ├── 📁 src/
-│   ├── 🚀 MPI_start.py        # Ponto de entrada e orquestrador principal de nós
-│   ├── 👑 leader.py            # Lógica do papel de Líder (agendamento e agregação)
-│   ├── ⚙️ worker.py           # Lógica do papel de Worker (download P2P e treino MLP)
-│   ├── 🧠 MLP.py              # Classificador MLP (Backpropagation manual em NumPy)
-│   ├── 🌐 node_context.py     # Gerenciador de estado e contexto global do nó
-│   ├── 📝 logger.py            # Logger formatado para arquivo e console
-│   ├── 🧹 clear_locals.py     # Utilitário de limpeza de estado local
-│   ├── 📊 plot_benchmark.py   # Gerador de gráficos de speedup e divisão por fases
-│   ├── 📈 analyze_metrics.py  # Analisador de eficiência paralela e overhead de rede
-│   ├── 🖥️ visualizer_server.py # Servidor HTTP REST/Static da interface web
-│   ├── 📜 visualizer_logger.py # Logger de eventos JSONL para o visualizador
-│   ├── 🎨 index.html          # Dashboard interativo em Vanilla JS + D3.js
+│   ├── MPI_start.py         #  Orquestrador principal de nós
+│   ├── leader.py            # Lógica do papel de Líder (agendamento e agregação)
+│   ├── worker.py            # Lógica do papel de Worker (download P2P e treino MLP)
+│   ├── MLP.py               # Classificador MLP
+│   ├── node_context.py      # Gerenciador de estado e contexto global do nó
+│   ├── logger.py            # Logger formatado para arquivo e console
+│   ├── clear_locals.py      # Utilitário de limpeza de estado local
+│   ├── plot_benchmark.py    # Gerador de gráficos de speedup e divisão por fases
+│   ├── analyze_metrics.py   # Analisador de eficiência paralela e overhead de rede
+│   ├── visualizer_server.py # Servidor HTTP REST/Static da interface web
+│   ├── visualizer_logger.py # Logger de eventos JSON para o visualizador
+│   ├── index.html           # Dashboard interativo em Vanilla JS + D3.js
 │   └── 📁 communication/      # Camada de rede, abstração MPI e engine torrent P2P
-│       ├── 📡 communication.py      # Serviço de heartbeat e eleição de líder
-│       ├── 🏷️ communication_tags.py # Definição de tags numéricas das mensagens MPI
-│       ├── 🔌 network.py            # Wrapper thread-safe para Send/Recv no MPI
-│       └── 🌊 torrent.py            # Engine P2P (inventário HAVE, requests e seeding)
+│       ├── communication.py      # Serviço de heartbeat e eleição de líder
+│       ├── communication_tags.py # Definição de tags numéricas das mensagens MPI
+│       ├── network.py            # Wrapper para Send/Recv no MPI
+│       └── torrent.py            # Engine P2P
 │
 └── 📁 tests/
-    ├── 🧪 run_tests.py         # Suíte de 9 testes de integração distribuídos
-    ├── 🧪 test_MPI_start.py    # Entry point para injeção e monkey-patching nos testes
-    └── 🔧 utils.py             # Helpers para sub-processos MPI e parsing de logs
+    ├── run_tests.py         # 9 testes de integração distribuídos
+    ├── test_MPI_start.py    # Entry point para os testes
+    └── utils.py             # Helpers para sub-processos MPI e parsing de logs
 ```
 
 ---
@@ -166,7 +165,7 @@ mpiexec -n 4 python -B src/MPI_start.py
 
 ### 2️⃣ Executando os Testes Automatizados
 
-A suíte de testes valida **9 cenários críticos de sistemas distribuídos**:
+A suíte de testes valida **9 cenários de sistemas distribuídos**:
 - 1. **Eleição de Líder**: Valida a re-eleição automática após a queda do nó principal.
 - 2. **Elegibilidade**: Garante que nós sem dataset não assumam a liderança.
 - 3. **Difusão P2P**: Confirma que todos os nós reconstroem o dataset completo via torrent.
@@ -207,7 +206,7 @@ O sistema grava visualmente todos os pacotes trocados e o progresso dos folds nu
    Acesse **[http://localhost:8000](http://localhost:8000)**
 
 3. **Acompanhar a execução**:
-   Dispare uma rodada da aplicação em outro terminal. O painel exibirá as conexões da rede, animações de transferência de pacotes P2P, alertas de eleição de líder e barras de progresso do treinamento K-Fold!
+   Execute a aplicação com os nós pelo terminal. O painel da web exibirá as conexões da rede, animações de transferência de pacotes P2P, alertas de eleição de líder e barras de progresso do treinamento em tempo real
 
 ---
 
@@ -215,7 +214,7 @@ O sistema grava visualmente todos os pacotes trocados e o progresso dos folds nu
 
 #### 📊 1. Gerador de Gráficos (`plot_benchmark.py`)
 
-Gera gráficos comparativos (`speedup_comparison.png` e `execution_phases_breakdown.png`) com fundo transparente prontos para artigos e apresentações.
+Gera gráficos comparativos (`speedup_comparison.png` e `execution_phases_breakdown.png`).
 
 ```bash
 # Modo Rápido (Gera os gráficos a partir dos dados do último teste ou dados históricos)
@@ -250,7 +249,6 @@ O comportamento do sistema pode ser customizado via **variáveis de ambiente** o
 | `DISTRIFOLD_N_SPLITS` | `64` | Quantidade de folds na divisão do K-Fold Cross Validation |
 | `DISTRIFOLD_EPOCHS` | `600` | Número máximo de épocas de treinamento da MLP por fold |
 | `ALLOW_LEADER_EARLY_TRAINING` | `False` | Se `True`, o líder treina localmente sem esperar que os workers fiquem prontos |
-| `DISTRIFOLD_BENCHMARK` | `False` | Se `True`, desativa a injeção simulada de falhas para medições puras de performance |
 
 ### 💡 Exemplos de Execução com Parâmetros Customizados
 
